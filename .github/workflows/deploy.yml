@@ -20,9 +20,13 @@ jobs:
           NEKOWEB_API_KEY: ${{ secrets.NEKOWEB_API_KEY }}
           BEFORE_SHA: ${{ github.event.before }}
           AFTER_SHA: ${{ github.sha }}
-          SITE_PATH: /${{ github.ref_name }}
+          SITE_PATH: /${{ github.ref_na`e }}
         run: |
           set -e
+
+          if [ -z "$BEFORE_SHA" ]; then
+            BEFORE_SHA=$(git rev-list --max-parents=0 HEAD)
+          fi
 
           git diff --name-status "$BEFORE_SHA" "$AFTER_SHA" \
             | while read status file; do
