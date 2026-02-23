@@ -1,0 +1,11 @@
+widget {
+  margin: var(--spacing-xs);
+  background-color: var(--background-color);
+  max-width: var(--max-content-size);
+  border-radius: var(--border-radius);
+  border: var(--border);
+
+  content {
+    padding: var(--spacing-sm);
+  }
+}

@@ -1,0 +1,9 @@
+header {
+  background-color: brown;
+  padding: var(--spacing-sm);
+
+  &[placement="top"] {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+  }
+}
