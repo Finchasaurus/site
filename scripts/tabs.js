@@ -1,5 +1,9 @@
 let openTabs = [
   {
+    name: "Home",
+    href: "/index.html",
+  },
+  {
     name: "Test",
     href: "/test.html",
   },
@@ -25,6 +29,9 @@ function createTab(tab, insertIndex = null) {
   const tabElement = document.createElement("tab");
   tabElement.textContent = tab.name;
   tabElement.dataset.name = tab.name;
+  if (window.location.pathname === tab.href) {
+    tabElement.toggleAttribute("selected", true);
+  }
 
   if (insertIndex === null || insertIndex >= tabsContainer.children.length) {
     tabsContainer.appendChild(tabElement);
