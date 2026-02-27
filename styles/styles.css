@@ -35,6 +35,10 @@ body {
   background-color: var(--background-color);
 
   overflow: hidden;
+
+  font-family: helvetica, sans-serif;
+  letter-spacing: 0.03rem;
+  font-weight: lighter;
 }
 
 body::before {
