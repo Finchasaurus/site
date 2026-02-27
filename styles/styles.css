@@ -140,11 +140,12 @@ desktop {
 desktop-icon {
   position: absolute;
   width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
   padding: var(--spacing-sm);
-  background: #1a1a1a;
+  background: var(--accent-color);
   color: white;
-  border: var(--border);
-  border-radius: var(--border-radius);
   text-align: center;
   cursor: grab;
   user-select: none;
