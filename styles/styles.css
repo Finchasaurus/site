@@ -53,7 +53,49 @@ main {
   background-color: green;
 
   header {
-    padding: var(--spacing-sm);
+    padding-top: var(--spacing-sm);
     background-color: red;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+}
+
+tab {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  margin-right: var(--spacing-sm);
+  background-color: gray;
+  transition: background-color var(--transition-fast);
+  width: 100px;
+
+  &:hover {
+    background-color: lightgray;
+  }
+}
+
+desktop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+desktop-icon {
+  position: absolute;
+  width: 72px;
+  padding: var(--spacing-sm);
+  background: #1a1a1a;
+  color: white;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  text-align: center;
+  cursor: grab;
+  user-select: none;
+  pointer-events: auto;
+
+  &:active {
+    cursor: grabbing;
   }
 }
