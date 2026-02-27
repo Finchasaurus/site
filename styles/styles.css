@@ -28,6 +28,7 @@ body {
   height: 100vh;
   display: flex;
   overflow: hidden;
+  user-select: none;
 }
 
 nav {
@@ -53,23 +54,25 @@ main {
   background-color: green;
 
   header {
-    padding-top: var(--spacing-sm);
+    padding-top: var(--spacing-xs);
     background-color: red;
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
+    height: 25px;
   }
 }
 
 tab {
   display: inline-block;
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
   margin-right: var(--spacing-sm);
   background-color: gray;
   transition: background-color var(--transition-fast);
   width: 100px;
+  clip-path: polygon(0.6rem 0%, calc(100% - 0.6rem) 0%, 100% 100%, 0% 100%);
 
   &:hover {
     background-color: lightgray;

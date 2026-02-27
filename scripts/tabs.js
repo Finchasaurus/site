@@ -3,6 +3,14 @@ let openTabs = [
     name: "Test",
     href: "/test.html",
   },
+  {
+    name: "Test2",
+    href: "/test.html",
+  },
+  {
+    name: "Test3",
+    href: "/test.html",
+  },
 ];
 
 const tabsContainer = document.querySelector("header");
@@ -13,13 +21,20 @@ for (const tab of openTabs) {
   createTab(tab);
 }
 
-function createTab(tab) {
+function createTab(tab, insertIndex = null) {
   const tabElement = document.createElement("tab");
   tabElement.textContent = tab.name;
-  tabsContainer.appendChild(tabElement);
+  tabElement.dataset.name = tab.name;
+
+  if (insertIndex === null || insertIndex >= tabsContainer.children.length) {
+    tabsContainer.appendChild(tabElement);
+  } else {
+    tabsContainer.insertBefore(tabElement, tabsContainer.children[insertIndex]);
+  }
 
   let startX, startY;
   let dragging = false;
+  let icon = null;
 
   tabElement.addEventListener("mousedown", (e) => {
     startX = e.clientX;
@@ -30,8 +45,18 @@ function createTab(tab) {
       const dx = moveEvent.clientX - startX;
       const dy = moveEvent.clientY - startY;
 
-      if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
+      if (!dragging && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
         dragging = true;
+
+        icon = createDesktopIcon(tab, moveEvent.clientX, moveEvent.clientY);
+
+        removeTabFromState(tab.name);
+        tabElement.remove();
+      }
+
+      if (dragging && icon) {
+        icon.style.left = `${moveEvent.clientX - 30}px`;
+        icon.style.top = `${moveEvent.clientY - 15}px`;
       }
     }
 
@@ -39,12 +64,23 @@ function createTab(tab) {
       document.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseup", onUp);
 
-      if (dragging) {
-        tabElement.remove();
+      if (!dragging) {
+        window.location.href = tab.href;
+        return;
+      }
 
-        createDesktopIcon(tabData, upEvent.clientX, upEvent.clientY);
+      const headerRect = tabsContainer.getBoundingClientRect();
+
+      if (
+        upEvent.clientY >= headerRect.top &&
+        upEvent.clientY <= headerRect.bottom
+      ) {
+        const insertIndex = getInsertIndex(upEvent.clientX);
+
+        icon.remove();
+        insertTabAt(tab, insertIndex);
       } else {
-        window.location.href = tabData.href;
+        makeDraggable(icon, tab);
       }
     }
 
@@ -54,23 +90,23 @@ function createTab(tab) {
 }
 
 function createDesktopIcon(tabData, x, y) {
-  const icon = document.createElement("div");
-  icon.className = "desktop-icon";
+  const icon = document.createElement("desktop-icon");
   icon.textContent = tabData.name;
 
+  icon.style.position = "absolute";
   icon.style.left = `${x}px`;
   icon.style.top = `${y}px`;
 
   desktop.appendChild(icon);
 
-  makeDraggable(icon);
-
   icon.addEventListener("dblclick", () => {
     window.location.href = tabData.href;
   });
+
+  return icon;
 }
 
-function makeDraggable(element) {
+function makeDraggable(element, tabData) {
   let offsetX, offsetY;
 
   element.addEventListener("mousedown", (e) => {
@@ -82,12 +118,49 @@ function makeDraggable(element) {
       element.style.top = `${moveEvent.clientY - offsetY}px`;
     }
 
-    function up() {
+    function up(upEvent) {
       document.removeEventListener("mousemove", move);
       document.removeEventListener("mouseup", up);
+
+      const headerRect = tabsContainer.getBoundingClientRect();
+
+      if (
+        upEvent.clientY >= headerRect.top &&
+        upEvent.clientY <= headerRect.bottom
+      ) {
+        const insertIndex = getInsertIndex(upEvent.clientX);
+
+        element.remove();
+        insertTabAt(tabData, insertIndex);
+      }
     }
 
     document.addEventListener("mousemove", move);
     document.addEventListener("mouseup", up);
   });
+}
+
+function getInsertIndex(mouseX) {
+  const tabs = Array.from(tabsContainer.children);
+
+  for (let i = 0; i < tabs.length; i++) {
+    const rect = tabs[i].getBoundingClientRect();
+    if (mouseX < rect.left + rect.width / 2) {
+      return i;
+    }
+  }
+
+  return tabs.length;
+}
+
+function insertTabAt(tab, index) {
+  openTabs.splice(index, 0, tab);
+  createTab(tab, index);
+}
+
+function removeTabFromState(tabName) {
+  const index = openTabs.findIndex((t) => t.name === tabName);
+  if (index !== -1) {
+    openTabs.splice(index, 1);
+  }
 }
