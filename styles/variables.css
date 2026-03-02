@@ -51,7 +51,7 @@
 	--header-font-size: 6ch;
 	--icon-img-height: 5rem;
 	/* Have to hard-code this to make it match nav unless i want to use js lol */
-	--sidebar-width: 207px;
+	--sidebar-width: 202px;
 	--page-width: 666px;
 
 	/* The dark mode is fucking stupid as shit */

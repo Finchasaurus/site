@@ -20,41 +20,41 @@ nav {
 	}
 }
 
-main:has(nav a:nth-child(1):hover) {
+page:has(nav a:nth-child(1):hover) {
 	--accent-color-main: var(--accent-color-1);
 	--accent-filter-main: var(--accent-filter-1);
 	--banner-text: var(--banner-text-1);
 }
-main:has(nav a:nth-child(2):hover) {
+page:has(nav a:nth-child(2):hover) {
 	--accent-color-main: var(--accent-color-2);
 	--accent-filter-main: var(--accent-filter-2);
 	--banner-text: var(--banner-text-2);
 }
-main:has(nav a:nth-child(3):hover) {
+page:has(nav a:nth-child(3):hover) {
 	--accent-color-main: var(--accent-color-3);
 	--accent-filter-main: var(--accent-filter-3);
 	--banner-text: var(--banner-text-3);
 }
-main:has(nav a:nth-child(4):hover) {
+page:has(nav a:nth-child(4):hover) {
 	--accent-color-main: var(--accent-color-4);
 	--accent-filter-main: var(--accent-filter-4);
 	--banner-text: var(--banner-text-4);
 }
-main:has(nav a:nth-child(5):hover) {
+page:has(nav a:nth-child(5):hover) {
 	--accent-color-main: var(--accent-color-5);
 	--accent-filter-main: var(--accent-filter-5);
 	--banner-text: var(--banner-text-5);
 }
-main:has(nav a:nth-child(6):hover) {
+page:has(nav a:nth-child(6):hover) {
 	--accent-color-main: var(--accent-color-6);
 	--accent-filter-main: var(--accent-filter-6);
 	--banner-text: var(--banner-text-6);
 }
-main:has(nav a:nth-child(7):hover) {
+page:has(nav a:nth-child(7):hover) {
 	--accent-color-main: var(--accent-color-7);
 	--accent-filter-main: var(--accent-filter-7);
 	--banner-text: var(--banner-text-7);
 }
-main:has(nav a:hover) {
+page:has(nav a:hover) {
 	--accent-border: var(--accent-color-main) var(--border-width) solid;
 }
