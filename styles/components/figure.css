@@ -10,10 +10,7 @@ details {
 		color: var(--accent-color-text);
 		margin: 0;
 		border: none;
-
-		&:not(:first-of-type(iframe)) {
-			padding: var(--spacing-xs);
-		}
+		padding: var(--spacing-xs);
 	}
 
 	& a:hover {
