@@ -19,10 +19,6 @@ main {
 
 	display: flex;
 	flex-direction: column;
-
-	@media (width <=600px) {
-		width: 100vw;
-	}
 }
 
 a {
@@ -34,7 +30,7 @@ button {
 	color: var(--accent-color-main);
 }
 
-*[tooltip] {
+body *[tooltip] {
 	position: relative;
 	cursor: help;
 	text-decoration: underline dotted;
@@ -84,19 +80,12 @@ content {
 		flex-direction: column;
 		gap: var(--spacing-sm);
 		border-right: var(--accent-border);
-
-		@media (width <=600px) {
-			display: none;
-		}
 	}
 
 	& > section {
 		h1 {
 			margin: 0;
 			padding: 0;
-		}
-		@media (width <=600px) {
-			margin: var(--spacing-sm);
 		}
 	}
 }

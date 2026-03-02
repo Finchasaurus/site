@@ -16,25 +16,4 @@ header {
 			height: var(--icon-img-height);
 		}
 	}
-
-	@media (width <=600px) {
-		font-size: 6ch;
-		padding: var(--spacing-sm);
-
-		& > label {
-			pointer-events: auto;
-			cursor: pointer;
-			opacity: 1;
-			& img {
-				height: 3rem;
-			}
-		}
-	}
-
-	@media (width > 600px) {
-		& > label {
-			pointer-events: none;
-			cursor: default;
-		}
-	}
 }

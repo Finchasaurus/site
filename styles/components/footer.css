@@ -15,10 +15,4 @@ footer {
 	& a:not(:first-child) {
 		border-left: solid var(--accent-color-text) var(--border-width);
 	}
-
-	@media (width <=600px) {
-		& nav {
-			display: none;
-		}
-	}
 }
