@@ -8,9 +8,12 @@ details {
 	& figcaption {
 		background: var(--accent-color-main);
 		color: var(--accent-color-text);
-		padding: var(--spacing-xs);
 		margin: 0;
 		border: none;
+
+		&:not(:first-of-type(iframe)) {
+			padding: var(--spacing-xs);
+		}
 	}
 
 	& a:hover {
