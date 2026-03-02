@@ -1,24 +1,122 @@
 :root {
-  /* Colors */
-  --background-color: black;
-  --border-color: white;
-  --text: white;
+	/* Colors */
+	--accent-color-main: black;
+	--accent-color-0: black;
+	--accent-color-1: black;
+	--accent-color-2: #ff5584;
+	--accent-color-3: #ffa361;
+	--accent-color-4: #fddd70;
+	--accent-color-5: #a4d25e;
+	--accent-color-6: #2ca6d6;
+	--accent-color-7: #7f76c7;
 
-  --border: 2px solid var(--border-color);
+	--accent-filter-0: brightness(0) saturate(100%);
+	--accent-filter-1: brightness(0) saturate(100%);
+	--accent-filter-2: brightness(0) saturate(100%) invert(49%) sepia(76%) saturate(2533%) hue-rotate(313deg)
+		brightness(102%) contrast(104%);
+	--accent-filter-3: brightness(0) saturate(100%) invert(79%) sepia(14%) saturate(2325%) hue-rotate(321deg)
+		brightness(100%) contrast(101%);
+	--accent-filter-4: brightness(0) saturate(100%) invert(95%) sepia(80%) saturate(847%) hue-rotate(321deg)
+		brightness(102%) contrast(98%);
+	--accent-filter-5: brightness(0) saturate(100%) invert(83%) sepia(35%) saturate(614%) hue-rotate(32deg)
+		brightness(90%) contrast(92%);
+	--accent-filter-6: brightness(0) saturate(100%) invert(83%) sepia(36%) saturate(6678%) hue-rotate(164deg)
+		brightness(87%) contrast(93%);
+	--accent-filter-7: brightness(0) saturate(100%) invert(62%) sepia(6%) saturate(3878%) hue-rotate(206deg)
+		brightness(79%) contrast(97%);
+	--accent-filter-white: brightness(0) invert(1);
+	--accent-filter-main: var(--accent-filter-0);
 
-  /* Transitions */
-  --transition-fast: 150ms ease-in-out;
-  --transition-medium: 300ms ease-in-out;
-  --transition-slow: 500ms ease-in-out;
+	--accent-color-text: white;
+	--background-color: lightgray;
+	--container-color: white;
 
-  /* Spacing */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 4rem;
+	/* Borders */
+	--border-width: 1px;
+	--accent-border: var(--accent-color-main) var(--border-width) solid;
 
-  /* Sizes */
-  --max-content-size: 600px;
-  --border-radius: 4px;
+	/* Transitions */
+	--transition-fast: 150ms ease-in-out;
+	--transition-medium: 300ms ease-in-out;
+	--transition-slow: 500ms ease-in-out;
+
+	/* Spacing */
+	--spacing-xs: 0.25rem;
+	--spacing-sm: 0.5rem;
+	--spacing-md: 1rem;
+	--spacing-lg: 2rem;
+	--spacing-xl: 4rem;
+
+	/* Sizes */
+	--header-font-size: 9ch;
+	--icon-img-height: 5rem;
+	/* Have to hard-code this to make it match nav unless i want to use js lol */
+	--sidebar-width: 189px;
+
+	/* The dark mode is fucking stupid as shit */
+	/* @media (prefers-color-scheme: dark) {
+		--accent-color-main: white;
+		--accent-color-0: white;
+		--accent-color-1: white;
+		--accent-filter-0: brightness(0) invert(1);
+		--accent-filter-1: brightness(0) invert(1);
+		--accent-color-text: black;
+		--background-color: black;
+		--container-color: black;
+	} */
+
+	--banner-text: "";
+	--banner-text-1: "h-hi";
+	--banner-text-2: "i made these";
+	--banner-text-3: "i can do stuff";
+	--banner-text-4: "lmao its my favs";
+	--banner-text-5: "cat department";
+	--banner-text-6: "mostly stuff ive written about im ngl";
+	--banner-text-7: "y-you want to t-talk to me??";
+}
+
+body[page="home"] {
+	--banner-text: var(--banner-text-1);
+	--accent-color-main: var(--accent-color-1);
+	--accent-filter-main: var(--accent-filter-1);
+}
+
+body[page="projects"] {
+	--banner-text: var(--banner-text-2);
+	--accent-color-main: var(--accent-color-2);
+	--accent-filter-main: var(--accent-filter-2);
+}
+
+body[page="skills"] {
+	--banner-text: var(--banner-text-3);
+	--accent-color-main: var(--accent-color-3);
+	--accent-filter-main: var(--accent-filter-3);
+}
+
+body[page="favorites"] {
+	--banner-text: var(--banner-text-4);
+	--accent-color-main: var(--accent-color-4);
+	--accent-filter-main: var(--accent-filter-4);
+}
+
+body[page="cats"] {
+	--banner-text: var(--banner-text-5);
+	--accent-color-main: var(--accent-color-5);
+	--accent-filter-main: var(--accent-filter-5);
+}
+
+body[page="resources"] {
+	--banner-text: var(--banner-text-6);
+	--accent-color-main: var(--accent-color-6);
+	--accent-filter-main: var(--accent-filter-6);
+}
+
+body[page="contact"] {
+	--banner-text: var(--banner-text-7);
+	--accent-color-main: var(--accent-color-7);
+	--accent-filter-main: var(--accent-filter-7);
+}
+
+body {
+	--accent-border: var(--accent-color-main) var(--border-width) solid;
 }

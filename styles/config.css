@@ -1,3 +1,33 @@
-[content="main"] {
-  width: var(--max-content-size);
+[accent="filter"] {
+	filter: var(--accent-filter-main);
+}
+[accent="color"] {
+	color: var(--accent-color-main);
+}
+[accent="background"] {
+	background-color: var(--accent-color-main);
+}
+[accent="none"] {
+	color: inherit;
+	background-color: inherit;
+	filter: none;
+}
+body:has(*[accent="none"]) {
+	color: inherit;
+	background-color: inherit;
+	filter: none;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+*[nowrap] {
+	white-space: nowrap;
+}
+
+img[aspect-one] {
+	aspect-ratio: 1;
 }

@@ -1,0 +1,26 @@
+#music-player {
+	& .controls {
+		display: flex;
+		justify-content: center;
+		padding: 0;
+	}
+
+	& button {
+		background-color: var(--container-color);
+		border: none;
+		padding: var(--spacing-sm);
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		flex: 1;
+
+		&:hover {
+			background-color: var(--accent-color-main);
+			color: var(--accent-color-text);
+		}
+
+		&:not(:last-child) {
+			border-right: var(--accent-border);
+		}
+	}
+}

@@ -1,25 +1,208 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="styles/styles.css" />
+		<!-- <link rel="stylesheet" href="styles/styles.css" /> -->
+		<link rel="stylesheet" href="styles/variables.css" />
+		<link rel="stylesheet" href="styles/components/navigation.css" />
+		<link rel="stylesheet" href="styles/base.css" />
+		<link rel="stylesheet" href="styles/config.css" />
+		<link rel="stylesheet" href="styles/media.css" />
+		<link rel="stylesheet" href="styles/components/header.css" />
+		<link rel="stylesheet" href="styles/components/footer.css" />
+		<link rel="stylesheet" href="styles/components/form.css" />
+		<link rel="stylesheet" href="styles/components/figure.css" />
+		<link rel="stylesheet" href="styles/components/accordion.css" />
+		<link rel="stylesheet" href="styles/components/music-player.css" />
+		<link rel="stylesheet" href="styles/components/banner.css" />
+		<link rel="stylesheet" href="styles/components/secret.css" />
 
-    <title>Hoshiai.Space</title>
-  </head>
+		<link rel="icon" type="image/x-icon" href="assets/shinji.png" />
+		<title>Meowbyte</title>
+	</head>
 
-  <body>
-    <nav>nav</nav>
-    <resize-handle></resize-handle>
-    <main>
-      <header></header>
-      (shh im kinda bored of this already i might go back to my old site lmao if
-      i do ill redesign it from scratch tho)
-    </main>
-  </body>
+	<noscript>
+		<style>
+			.js-only {
+				display: none;
+			}
+		</style>
+	</noscript>
+	<body page="home">
+		<main>
+			<main-header accent="color">
+				<span>
+					Meow<span title="Why did the byte break up with the bit? Because it needed some space!">byte</span>
+				</span>
+				<label for="cat-toggle" class="icon" title="Meow">
+					<img src="assets/cat.svg" accent="filter" style="cursor: pointer" />
+				</label>
+				<input type="checkbox" id="cat-toggle" />
+			</main-header>
+			<nav>
+				<a href="index.html" title="Go to the homepage">Home</a>
+				<a href="projects.html" title="Check out my projects">Projects</a>
+				<a href="skills.html" title="See my skills and expertise">Skills</a>
+				<a href="favorites.html" title="See my favourite things">Favorites</a>
+				<a href="cats.html" title="Cats">Cats</a>
+				<a href="resources.html" title="Useful resources and links">Resources</a>
+				<a href="contact.html" title="Get in touch with me">Contact</a>
+			</nav>
+			<banner accent="background"><scrolling-text></scrolling-text></banner>
+			<content accent="color">
+				<sidebar>
+					<figure>
+						<img src="assets/shinji.png" aspect-one />
+						<a href="/favorites.html#shinji_ikari">
+							<figcaption>Shinji Ikari</figcaption>
+						</a>
+					</figure>
+					<figure>
+						<figcaption>What type of visitor are you?</figcaption>
+						<form method="post" action="https://poll.pollcode.com/51119526" target="_blank">
+							<radio-group vertical role="radiogroup">
+								<label for="answer511195261">
+									<input type="radio" name="answer" value="1" id="answer511195261" />
+									Curious Lurker
+								</label>
+								<label for="answer511195262">
+									<input type="radio" name="answer" value="2" id="answer511195262" />
+									Fellow Developer
+								</label>
+								<label for="answer511195263">
+									<input type="radio" name="answer" value="3" id="answer511195263" />
+									Cat Enthusiast
+								</label>
+								<label for="answer511195264">
+									<input type="radio" name="answer" value="4" id="answer511195264" />
+									Accidental Visitor (help)
+								</label>
+							</radio-group>
 
-  <script type="module" src="scripts/resize.js"></script>
-  <script type="module" src="scripts/tabs.js"></script>
+							<radio-group horizontal role="radiogroup">
+								<label><input type="submit" value="Vote" />Submit</label>
+								<label><input type="submit" name="view" value="View" />View</label>
+							</radio-group>
+						</form>
+					</figure>
+					<figure id="music-player" class="js-only">
+						<figcaption title="#1 Emil fan">Emil - Sacrifice</figcaption>
+
+						<audio src="/assets/Emil_Sacrifice.mp3" preload="metadata"></audio>
+
+						<div class="controls">
+							<button id="backward">⏮</button>
+							<button id="play-pause">▶</button>
+							<button id="forward">⏭</button>
+						</div>
+					</figure>
+					<!-- <iframe src="graphics/teapot.html" class="js-only"></iframe> -->
+					<!-- <script>
+						const iframe = document.getElementById("iframe");
+						iframe.onload = () => {
+							const color = getComputedStyle(document.documentElement)
+								.getPropertyValue("--accent-color-main")
+								.trim();
+							iframe.contentWindow.postMessage({ accentColor: color }, "*");
+						};
+					</script> -->
+				</sidebar>
+				<section>
+					<h1>Welcome to Meowbyte</h1>
+					<p>
+						Hallo! I'm Finch, a <span title="08/22/2004">21-year-old</span> developer based in
+						<span tooltip="I realised this was a bad idea to tell even though its a big city">
+							########## </span
+						>. I have 5 different A-identities: Aromantic, Asexual, Agender, Autistic, and ADHD. I love
+						<a href="/cats.html" tooltip="meow meow i love kityt cats">cats</a>,
+						<a href="/favorites.html#games" tooltip="vidya gamiya" nowrap>video games</a>, learning,
+						programming, and all things
+						<a href="/favorites.html#cs" tooltip="especially computer graphics">computer science</a>. I
+						currently work for a a local government in the US.
+					</p>
+					<p>
+						This site is a fun side project where I share my thoughts, projects, and random musings while
+						practicing my web dev skills. Feel free to poke around and discover some hidden surprises and
+						silly things.
+					</p>
+					<p>
+						I'm trying to limit my reliance on javascript; I encourage anyone to poke around and help me
+						figure out ways to use less.
+					</p>
+					<p>Only home has content for now! Sorry about that! ^-^</p>
+					<noscript>
+						<break horizontal></break>
+						<p>
+							It looks like you have JavaScript disabled. Most of the site will still work but some
+							features have been disabled.
+						</p>
+					</noscript>
+					<mobile>
+						<break horizontal></break>
+						<p>Mobile only zone:</p>
+						<p>
+							This site was made and designed for computers but I've hacked together mobile support for
+							the basics. I don't know how much content is inaccessible though. I tried.
+						</p>
+						<p>P.S. The kitty cat icon opens the navigation menu. I hid it to not clutter your screen.</p>
+					</mobile>
+					<secret id="yorha">
+						<accordion horizontal>
+							<details name="media">
+								<summary>
+									<img src="assets/2B.png" />
+								</summary>
+								<p hint="show">This is the secret</p>
+								<p hint="hide">
+									"Everything that lives is designed to end. We are perpetually trapped in a
+									never-ending spiral of life and death.
+								</p>
+							</details>
+							<details name="media" open>
+								<summary>
+									<img src="assets/9S.png" />
+								</summary>
+								<p hint="show">This is the secret</p>
+								<p hint="hide">
+									"We're not built to last forever. But every moment… every fight… it matters."
+								</p>
+							</details>
+							<details name="media">
+								<summary>
+									<img src="assets/A2.png" />
+								</summary>
+								<p hint="show">This is the secret</p>
+								<p hint="show">
+									"I don't care about the past or the future. I only care about what I can do right
+									now."
+								</p>
+							</details>
+						</accordion>
+						<input type="password" id="yorha-secret-1" pattern="YoRHa" required />
+						<input type="password" id="yorha-secret-2" pattern="2B9SA2" required />
+					</secret>
+					<a id="yorha-secret-answer" href="./glory-to-mankind.html" title="Glory to Mankind!"
+						>▶ Glory to Mankind!</a
+					>
+				</section>
+			</content>
+			<footer accent="background">
+				<p>© 2026 Meowbyte. All rights reserved.</p>
+				<nav>
+					<a href="index.html" title="Go to the homepage">Home</a>
+					<a href="projects.html" title="Check out my projects">Projects</a>
+					<a href="skills.html" title="See my skills and expertise">Skills</a>
+					<a href="favorites.html" title="See my favourite things">Favorites</a>
+					<a href="cats.html" title="Cats">Cats</a>
+					<a href="resources.html" title="Useful resources and links">Resources</a>
+					<a href="contact.html" title="Get in touch with me">Contact</a>
+				</nav>
+				<p>Meowbyte - Where code meets cats 🐱</p>
+			</footer>
+		</main>
+		<script src="scripts/music-player.js"></script>
+	</body>
 </html>

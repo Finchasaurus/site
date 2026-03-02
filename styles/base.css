@@ -1,11 +1,132 @@
 body {
-  background-color: var(--background-color);
-  color: white;
+	background: var(--background-color);
+	margin: 0;
+	overflow-x: hidden;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
 main {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
+	position: relative;
+	background: var(--container-color);
+	border: var(--accent-border);
+
+	width: 100%;
+	max-width: 600px;
+	min-height: 100lvh;
+
+	display: flex;
+	flex-direction: column;
+
+	@media (width <=600px) {
+		width: 100vw;
+	}
+}
+
+a {
+	color: var(--accent-color-main);
+	text-decoration: underline;
+}
+
+button {
+	color: var(--accent-color-main);
+}
+
+*[tooltip] {
+	position: relative;
+	cursor: help;
+	text-decoration: underline dotted;
+	display: inline-block;
+
+	&::after {
+		content: attr(tooltip);
+		position: absolute;
+		bottom: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		background-color: var(--accent-color-main);
+		color: var(--accent-color-text);
+		padding: 0.3em 0.6em;
+		border-radius: 0.25em;
+		white-space: nowrap;
+		font-size: 0.8em;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity var(--transition-fast);
+		z-index: 10;
+	}
+
+	&:hover::after,
+	&:hover::before {
+		opacity: 1;
+		pointer-events: auto;
+	}
+}
+
+break {
+	display: block;
+	background-color: var(--accent-color-main);
+
+	&[horizontal] {
+		width: 100%;
+		height: 1px;
+	}
+
+	&[vertical] {
+		width: 1px;
+		height: 100%;
+	}
+}
+
+content {
+	display: flex;
+	flex-direction: row;
+	padding: 0;
+	overflow: hidden;
+	flex: 1;
+
+	& > * {
+		padding: var(--spacing-sm);
+		flex: 1;
+	}
+
+	& > sidebar {
+		width: var(--sidebar-width);
+		flex: 0 0 var(--sidebar-width);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-sm);
+		border-right: var(--accent-border);
+
+		@media (width <=600px) {
+			display: none;
+		}
+	}
+
+	& > section {
+		h1 {
+			margin: 0;
+			padding: 0;
+		}
+		@media (width <=600px) {
+			margin: var(--spacing-sm);
+		}
+	}
+}
+
+input[type="text"],
+input[type="password"] {
+	display: block;
+	border: var(--accent-border);
+	width: 100%;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+input {
+	display: none;
 }

@@ -1,0 +1,24 @@
+footer {
+	padding: var(--spacing-xs) 0;
+	color: var(--accent-color-text);
+
+	& p {
+		margin: var(--spacing-md);
+	}
+
+	& a {
+		color: var(--accent-color-text);
+		border: none;
+		padding: 0 var(--spacing-md);
+	}
+
+	& a:not(:first-child) {
+		border-left: solid var(--accent-color-text) var(--border-width);
+	}
+
+	@media (width <=600px) {
+		& nav {
+			display: none;
+		}
+	}
+}

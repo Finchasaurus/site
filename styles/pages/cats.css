@@ -1,0 +1,36 @@
+details {
+	&:hover {
+		background-color: var(--container-color);
+		color: var(--accent-color-main);
+	}
+	&:open {
+		summary {
+			border-bottom: var(--accent-border);
+			background-color: var(--accent-color-main);
+			color: var(--accent-color-text);
+		}
+	}
+
+	grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: 1rem;
+		margin: var(--spacing-sm);
+
+		img {
+			width: 100%;
+			aspect-ratio: 1 / 1;
+			object-fit: cover;
+			display: block;
+			border-radius: 0.5rem;
+		}
+	}
+	summary {
+		width: 100%;
+		&:hover {
+			color: var(--accent-color-text);
+			background-color: var(--accent-color-main);
+			text-decoration: underline;
+		}
+	}
+}

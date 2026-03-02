@@ -1,0 +1,34 @@
+figure,
+details {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	border: var(--accent-border);
+
+	& figcaption {
+		background: var(--accent-color-main);
+		color: var(--accent-color-text);
+		padding: var(--spacing-xs);
+		margin: 0;
+		border: none;
+	}
+
+	& a:has(figcaption):is(:first-child),
+	& > figcaption:is(:first-child) {
+		border-bottom: var(--accent-border);
+	}
+
+	& a:has(figcaption):is(:last-child),
+	& > figcaption:is(:last-child) {
+		border-top: var(--accent-border);
+	}
+
+	& a:hover {
+		color: var(--accent-color-text);
+		background: var(--accent-color-main);
+	}
+
+	& img {
+		object-fit: contain;
+	}
+}
