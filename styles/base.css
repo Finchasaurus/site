@@ -96,11 +96,3 @@ main {
 input {
 	display: none;
 }
-
-.styled-follow {
-	opacity: 0;
-	button {
-		width: 100%;
-		position: fixed;
-	}
-}
