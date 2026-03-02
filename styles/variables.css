@@ -48,7 +48,7 @@
 	--spacing-xl: 4rem;
 
 	/* Sizes */
-	--header-font-size: 9ch;
+	--header-font-size: 6ch;
 	--icon-img-height: 5rem;
 	/* Have to hard-code this to make it match nav unless i want to use js lol */
 	--sidebar-width: 189px;

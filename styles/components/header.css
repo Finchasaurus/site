@@ -1,8 +1,9 @@
-main-header {
+header {
 	padding-left: var(--spacing-md);
 	padding-right: var(--spacing-md);
 	padding-bottom: var(--spacing-sm);
 	font-size: var(--header-font-size);
+	font-weight: bold;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;

@@ -9,7 +9,7 @@ footer {
 	& a {
 		color: var(--accent-color-text);
 		border: none;
-		padding: 0 var(--spacing-md);
+		padding: 0 var(--spacing-xs);
 	}
 
 	& a:not(:first-child) {
