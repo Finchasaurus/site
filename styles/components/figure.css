@@ -25,4 +25,14 @@ details {
 	p {
 		margin: var(--spacing-xs);
 	}
+
+	a:not(:has(figcaption)) {
+		text-decoration: none;
+		padding: var(--spacing-xs);
+
+		&:hover {
+			text-decoration: underline;
+			background: var(--accent-color-main);
+		}
+	}
 }
