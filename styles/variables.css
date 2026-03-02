@@ -52,7 +52,7 @@
 	--icon-img-height: 5rem;
 	/* Have to hard-code this to make it match nav unless i want to use js lol */
 	--sidebar-width: 207px;
-	--page-width: 700px;
+	--page-width: 666px;
 
 	/* The dark mode is fucking stupid as shit */
 	/* @media (prefers-color-scheme: dark) {

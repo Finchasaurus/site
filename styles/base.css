@@ -8,7 +8,7 @@ body {
 	justify-content: center;
 }
 
-main {
+page {
 	position: relative;
 	background: var(--container-color);
 	border: var(--accent-border);
@@ -46,7 +46,11 @@ body *[tooltip] {
 		color: var(--accent-color-text);
 		padding: 0.3em 0.6em;
 		border-radius: 0.25em;
-		white-space: nowrap;
+		white-space: normal;
+		width: max-content;
+		max-width: 250px;
+		overflow-wrap: break-word;
+		text-align: center;
 		font-size: 0.8em;
 		opacity: 0;
 		pointer-events: none;
@@ -61,11 +65,10 @@ body *[tooltip] {
 	}
 }
 
-content {
+main {
 	display: flex;
 	flex-direction: row;
 	padding: 0;
-	overflow: hidden;
 	flex: 1;
 
 	& > * {
@@ -73,7 +76,7 @@ content {
 		flex: 1;
 	}
 
-	& > sidebar {
+	& > aside {
 		width: var(--sidebar-width);
 		flex: 0 0 var(--sidebar-width);
 		display: flex;
