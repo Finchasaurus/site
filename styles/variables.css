@@ -51,7 +51,8 @@
 	--header-font-size: 6ch;
 	--icon-img-height: 5rem;
 	/* Have to hard-code this to make it match nav unless i want to use js lol */
-	--sidebar-width: 189px;
+	--sidebar-width: 207px;
+	--page-width: 700px;
 
 	/* The dark mode is fucking stupid as shit */
 	/* @media (prefers-color-scheme: dark) {
@@ -67,7 +68,7 @@
 
 	--banner-text: "";
 	--banner-text-1: "h-hi";
-	--banner-text-2: "i made these";
+	--banner-text-2: "its me";
 	--banner-text-3: "i can do stuff";
 	--banner-text-4: "lmao its my favs";
 	--banner-text-5: "cat department";

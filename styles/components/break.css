@@ -1,0 +1,48 @@
+break {
+	display: block;
+	background-color: var(--accent-color-main);
+
+	&[horizontal] {
+		width: 100%;
+		height: 1px;
+
+		&[type="dotted"] {
+			background: repeating-linear-gradient(
+				to right,
+				var(--accent-color-main) 0,
+				var(--accent-color-main) 2px,
+				transparent 2px,
+				transparent 6px
+			);
+		}
+	}
+
+	&[vertical] {
+		width: 1px;
+		height: 100%;
+
+		&[type="dotted"] {
+			background: repeating-linear-gradient(
+				to bottom,
+				var(--accent-color-main) 0,
+				var(--accent-color-main) 2px,
+				transparent 2px,
+				transparent 6px
+			);
+		}
+	}
+
+	&[soft] {
+		opacity: 0.4;
+	}
+
+	&[type="dotted"] {
+		background: repeating-linear-gradient(
+			to right,
+			var(--accent-color-main) 0,
+			var(--accent-color-main) 2px,
+			transparent 2px,
+			transparent 6px
+		);
+	}
+}

@@ -14,7 +14,7 @@ main {
 	border: var(--accent-border);
 
 	width: 100%;
-	max-width: 600px;
+	max-width: var(--page-width);
 	min-height: 100lvh;
 
 	display: flex;
@@ -62,21 +62,6 @@ button {
 	&:hover::before {
 		opacity: 1;
 		pointer-events: auto;
-	}
-}
-
-break {
-	display: block;
-	background-color: var(--accent-color-main);
-
-	&[horizontal] {
-		width: 100%;
-		height: 1px;
-	}
-
-	&[vertical] {
-		width: 1px;
-		height: 100%;
 	}
 }
 

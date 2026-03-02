@@ -13,16 +13,6 @@ details {
 		border: none;
 	}
 
-	& a:has(figcaption):is(:first-child),
-	& > figcaption:is(:first-child) {
-		border-bottom: var(--accent-border);
-	}
-
-	& a:has(figcaption):is(:last-child),
-	& > figcaption:is(:last-child) {
-		border-top: var(--accent-border);
-	}
-
 	& a:hover {
 		color: var(--accent-color-text);
 		background: var(--accent-color-main);
@@ -30,5 +20,9 @@ details {
 
 	& img {
 		object-fit: contain;
+	}
+
+	p {
+		margin: var(--spacing-xs);
 	}
 }
