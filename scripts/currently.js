@@ -86,7 +86,7 @@ async function loadAniList() {
                     updatedAt
                     media {
                         title {
-                            romaji
+                            english
                         }
                         siteUrl
                         coverImage {
