@@ -2,7 +2,7 @@ function renderLastFM(data) {
 	const trackName = data.track.name;
 	const trackUrl = data.track.url;
 	const trackArtist = data.track.artist["#text"];
-	const trackImage = data.track.image[3]["#text"];
+	const trackImage = data.track.image[2]["#text"];
 
 	const container = document.getElementById("listening");
 
