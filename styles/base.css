@@ -84,15 +84,18 @@ layout {
 		gap: var(--spacing-sm);
 		border-right: var(--accent-border);
 	}
-
-	& > section {
-		h1 {
-			margin: 0;
-			padding: 0;
-		}
-	}
 }
 
 input {
 	display: none;
+}
+
+section {
+	border-bottom: var(--accent-border);
+	padding-bottom: var(--spacing-sm);
+}
+
+h1 {
+	margin: 0;
+	padding: 0;
 }

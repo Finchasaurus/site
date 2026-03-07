@@ -1,0 +1,14 @@
+group {
+	display: flex;
+	gap: 10px;
+	width: 100%;
+
+	figure {
+		flex: 1;
+		min-width: 0;
+	}
+
+	img {
+		width: 100%;
+	}
+}

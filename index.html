@@ -17,6 +17,8 @@
 		<link rel="stylesheet" href="styles/components/music-player.css" />
 		<link rel="stylesheet" href="styles/components/banner.css" />
 		<link rel="stylesheet" href="styles/components/break.css" />
+		<link rel="stylesheet" href="styles/components/group.css" />
+		<link rel="stylesheet" href="styles/components/currently.css" />
 
 		<link rel="icon" type="image/x-icon" href="assets/shinji.png" />
 		<title>Hoshiai.Space</title>
@@ -24,7 +26,8 @@
 
 	<noscript>
 		<style>
-			.js-only {
+			.js-only,
+			with-js {
 				display: none;
 			}
 		</style>
@@ -99,13 +102,46 @@
 				<main>
 					<section>
 						<h1>Welcome to Hoshiai.Space</h1>
-						<p>Only home has content for now! Sorry about that! ^-^</p>
-						<p>Instead of content here is Shinji</p>
-
-						<figure>
-							<img src="assets/shinji.png" aspect-one accent="filter" />
-						</figure>
+						<p>This place serves as my personal world where I can post about whatever comes to mind</p>
+						<p>
+							I enjoy quite a wide amount of things so there's always going to be something interesting (i
+							hope)
+						</p>
+						<p>
+							To get started I reccomend <a href="about.html">About</a> or
+							<a href="sitemap.html">Sitemap</a>
+						</p>
 					</section>
+					<with-js>
+						<section>
+							<h1>Currently</h1>
+							<group id="currently">
+								<figure id="listening">
+									<img />
+									<a><figcaption>Loading...</figcaption></a>
+								</figure>
+								<figure id="watching">
+									<img />
+									<a><figcaption>Loading...</figcaption></a>
+								</figure>
+								<figure id="reading">
+									<img
+										src="https://assets.hardcover.app/editions/31219024/1795985517831276.jpg"
+										alt="The Brightness Between Us"
+									/>
+									<a href="https://hardcover.app/@hoshiai" target="_blank">
+										<figcaption>
+											<span
+												tooltip="Hardcover's API won't let me make this dynamically populate so this is going to get outdated."
+											>
+												The Brightness Between Us - Eliot Schrefer
+											</span>
+										</figcaption>
+									</a>
+								</figure>
+							</group>
+						</section>
+					</with-js>
 				</main>
 			</layout>
 			<footer accent="background">
@@ -123,5 +159,6 @@
 			</footer>
 		</page>
 		<script src="scripts/music-player.js"></script>
+		<script src="scripts/currently.js"></script>
 	</body>
 </html>
