@@ -65,7 +65,7 @@ body *[tooltip] {
 	}
 }
 
-main {
+layout {
 	display: flex;
 	flex-direction: row;
 	padding: 0;
