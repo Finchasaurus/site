@@ -50,7 +50,7 @@ function renderAniList(data) {
 	entries.sort((a, b) => b.updatedAt - a.updatedAt);
 	const entry = entries[0].media;
 
-	const title = entry.title.romaji;
+	const title = entry.title.english;
 	const url = entry.siteUrl;
 	const image = entry.coverImage.large;
 
