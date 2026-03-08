@@ -99,3 +99,12 @@ h1 {
 	margin: 0;
 	padding: 0;
 }
+
+.button {
+	text-decoration: none;
+	width: 88px;
+	height: 31px;
+	img {
+		width: inherit;
+	}
+}
