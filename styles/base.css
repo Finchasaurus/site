@@ -86,10 +86,6 @@ layout {
 	}
 }
 
-input {
-	display: none;
-}
-
 section {
 	border-bottom: var(--accent-border);
 	padding-bottom: var(--spacing-sm);
@@ -107,4 +103,12 @@ h1 {
 	img {
 		width: inherit;
 	}
+}
+
+textarea,
+textarea:focus-visible {
+	border: var(--accent-border);
+	color: var(--accent-color-main);
+	resize: none;
+	outline: none;
 }
