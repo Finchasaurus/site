@@ -5,15 +5,16 @@ function renderLastFM(data) {
 	const trackImage = data.track.image[2]["#text"];
 
 	const container = document.getElementById("listening");
+	const img = container.querySelector("img");
+	const link = container.querySelector("a");
+	const caption = link.querySelector("figcaption");
 
-	container.innerHTML = `
-		<img src="${trackImage}" alt="${trackName} cover">
-		<a href="${trackUrl}" target="_blank">
-			<figcaption>
-				${trackName} - ${trackArtist}
-			</figcaption>
-		</a>
-	`;
+	img.src = trackImage;
+	img.alt = `${trackName} cover`;
+
+	link.href = trackUrl;
+
+	caption.textContent = `${trackName} - ${trackArtist}`;
 }
 
 async function loadLastFM() {
@@ -55,15 +56,16 @@ function renderAniList(data) {
 	const image = entry.coverImage.large;
 
 	const container = document.querySelector("#watching");
+	const img = container.querySelector("img");
+	const link = container.querySelector("a");
+	const caption = link.querySelector("figcaption");
 
-	container.innerHTML = `
-		<img src="${image}" alt="${title}">
-		<a href="${url}" target="_blank">
-			<figcaption>
-				${title}
-			</figcaption>
-		</a>
-	`;
+	img.src = image;
+	img.alt = title;
+
+	link.href = url;
+
+	caption.textContent = title;
 }
 
 async function loadAniList() {
