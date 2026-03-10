@@ -1,3 +1,7 @@
+:root {
+	scrollbar-gutter: stable both-edges;
+}
+
 body {
 	background: var(--background-color);
 	margin: 0;
