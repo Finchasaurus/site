@@ -25,7 +25,7 @@ details {
 		align-items: center;
 	}
 
-	& a:hover {
+	& > a:hover {
 		color: var(--accent-color-text);
 		background: var(--accent-color-main);
 	}
@@ -38,7 +38,7 @@ details {
 		margin: var(--spacing-xs);
 	}
 
-	a:not(:has(figcaption)) {
+	& > a:not(:has(figcaption)) {
 		text-decoration: none;
 		padding: var(--spacing-xs);
 
