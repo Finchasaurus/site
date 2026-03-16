@@ -74,6 +74,9 @@
 	--banner-text-5: "Meow meow meow I love my cat";
 	--banner-text-6: "Cool ahh stuff";
 	--banner-text-7: "Let's get in touch!";
+
+	--banner-text-nojs: "Javascript-free mode";
+	--banner-text-changelog: "Changelog";
 }
 
 body[page="home"] {
@@ -116,6 +119,18 @@ body[page="contact"] {
 	--banner-text: var(--banner-text-7);
 	--accent-color-main: var(--accent-color-7);
 	--accent-filter-main: var(--accent-filter-7);
+}
+
+body[page="no-js"] {
+	--banner-text: var(--banner-text-nojs);
+	--accent-color-main: var(--accent-color-0);
+	--accent-filter-main: var(--accent-filter-0);
+}
+
+body[page="changelog"] {
+	--banner-text: var(--banner-text-changelog);
+	--accent-color-main: var(--accent-color-0);
+	--accent-filter-main: var(--accent-filter-0);
 }
 
 body {
