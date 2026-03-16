@@ -1,5 +1,5 @@
 [accent="filter"] {
-	filter: var(--accent-filter-main);
+	filter: var(--accent-filter);
 }
 [accent="color"] {
 	color: var(--accent-color);

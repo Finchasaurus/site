@@ -10,22 +10,22 @@
 	--accent-color-resources: #2ca6d6;
 	--accent-color-contact: #7f76c7;
 
-	--accent-filter-0: brightness(0) saturate(100%);
-	--accent-filter-1: brightness(0) saturate(100%);
-	--accent-filter-2: brightness(0) saturate(100%) invert(49%) sepia(76%) saturate(2533%) hue-rotate(313deg)
+	--accent-filter-default: brightness(0) saturate(100%);
+	--accent-filter-home: brightness(0) saturate(100%);
+	--accent-filter-about: brightness(0) saturate(100%) invert(49%) sepia(76%) saturate(2533%) hue-rotate(313deg)
 		brightness(102%) contrast(104%);
-	--accent-filter-3: brightness(0) saturate(100%) invert(79%) sepia(14%) saturate(2325%) hue-rotate(321deg)
+	--accent-filter-skills: brightness(0) saturate(100%) invert(79%) sepia(14%) saturate(2325%) hue-rotate(321deg)
 		brightness(100%) contrast(101%);
-	--accent-filter-4: brightness(0) saturate(100%) invert(95%) sepia(80%) saturate(847%) hue-rotate(321deg)
+	--accent-filter-favorites: brightness(0) saturate(100%) invert(95%) sepia(80%) saturate(847%) hue-rotate(321deg)
 		brightness(102%) contrast(98%);
-	--accent-filter-5: brightness(0) saturate(100%) invert(83%) sepia(35%) saturate(614%) hue-rotate(32deg)
+	--accent-filter-cats: brightness(0) saturate(100%) invert(83%) sepia(35%) saturate(614%) hue-rotate(32deg)
 		brightness(90%) contrast(92%);
-	--accent-filter-6: brightness(0) saturate(100%) invert(83%) sepia(36%) saturate(6678%) hue-rotate(164deg)
+	--accent-filter-resources: brightness(0) saturate(100%) invert(83%) sepia(36%) saturate(6678%) hue-rotate(164deg)
 		brightness(87%) contrast(93%);
-	--accent-filter-7: brightness(0) saturate(100%) invert(62%) sepia(6%) saturate(3878%) hue-rotate(206deg)
+	--accent-filter-contact: brightness(0) saturate(100%) invert(62%) sepia(6%) saturate(3878%) hue-rotate(206deg)
 		brightness(79%) contrast(97%);
 	--accent-filter-white: brightness(0) invert(1);
-	--accent-filter-main: var(--accent-filter-0);
+	--accent-filter: var(--accent-filter-default);
 
 	--accent-color-text: white;
 	--background-color: lightgray;
@@ -59,8 +59,8 @@
 		--accent-color: white;
 		--accent-color-default: white;
 		--accent-color-home: white;
-		--accent-filter-0: brightness(0) invert(1);
-		--accent-filter-1: brightness(0) invert(1);
+		--accent-filter-default: brightness(0) invert(1);
+		--accent-filter-home: brightness(0) invert(1);
 		--accent-color-text: black;
 		--background-color: black;
 		--container-color: black;
@@ -82,55 +82,55 @@
 body[page="home"] {
 	--banner-text: var(--banner-text-home);
 	--accent-color: var(--accent-color-home);
-	--accent-filter-main: var(--accent-filter-1);
+	--accent-filter: var(--accent-filter-home);
 }
 
 body[page="projects"] {
 	--banner-text: var(--banner-text-about);
 	--accent-color: var(--accent-color-about);
-	--accent-filter-main: var(--accent-filter-2);
+	--accent-filter: var(--accent-filter-about);
 }
 
 body[page="skills"] {
 	--banner-text: var(--banner-text-skills);
 	--accent-color: var(--accent-color-skills);
-	--accent-filter-main: var(--accent-filter-3);
+	--accent-filter: var(--accent-filter-skills);
 }
 
 body[page="favorites"] {
 	--banner-text: var(--banner-text-favorites);
 	--accent-color: var(--accent-color-favorites);
-	--accent-filter-main: var(--accent-filter-4);
+	--accent-filter: var(--accent-filter-favorites);
 }
 
 body[page="cats"] {
 	--banner-text: var(--banner-text-cats);
 	--accent-color: var(--accent-color-cats);
-	--accent-filter-main: var(--accent-filter-5);
+	--accent-filter: var(--accent-filter-cats);
 }
 
 body[page="resources"] {
 	--banner-text: var(--banner-text-resources);
 	--accent-color: var(--accent-color-resources);
-	--accent-filter-main: var(--accent-filter-6);
+	--accent-filter: var(--accent-filter-resources);
 }
 
 body[page="contact"] {
 	--banner-text: var(--banner-text-contact);
 	--accent-color: var(--accent-color-contact);
-	--accent-filter-main: var(--accent-filter-7);
+	--accent-filter: var(--accent-filter-contact);
 }
 
 body[page="no-js"] {
 	--banner-text: var(--banner-text-nojs);
 	--accent-color: var(--accent-color-default);
-	--accent-filter-main: var(--accent-filter-0);
+	--accent-filter: var(--accent-filter-default);
 }
 
 body[page="changelog"] {
 	--banner-text: var(--banner-text-changelog);
 	--accent-color: var(--accent-color-default);
-	--accent-filter-main: var(--accent-filter-0);
+	--accent-filter: var(--accent-filter-default);
 }
 
 body {

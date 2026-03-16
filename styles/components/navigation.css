@@ -22,37 +22,37 @@ nav {
 
 page:has(nav a:nth-child(1):hover) {
 	--accent-color: var(--accent-color-home);
-	--accent-filter-main: var(--accent-filter-1);
+	--accent-filter: var(--accent-filter-home);
 	--banner-text: var(--banner-text-home);
 }
 page:has(nav a:nth-child(2):hover) {
 	--accent-color: var(--accent-color-about);
-	--accent-filter-main: var(--accent-filter-2);
+	--accent-filter: var(--accent-filter-about);
 	--banner-text: var(--banner-text-about);
 }
 page:has(nav a:nth-child(3):hover) {
 	--accent-color: var(--accent-color-skills);
-	--accent-filter-main: var(--accent-filter-3);
+	--accent-filter: var(--accent-filter-skills);
 	--banner-text: var(--banner-text-skills);
 }
 page:has(nav a:nth-child(4):hover) {
 	--accent-color: var(--accent-color-favorites);
-	--accent-filter-main: var(--accent-filter-4);
+	--accent-filter: var(--accent-filter-favorites);
 	--banner-text: var(--banner-text-favorites);
 }
 page:has(nav a:nth-child(5):hover) {
 	--accent-color: var(--accent-color-cats);
-	--accent-filter-main: var(--accent-filter-5);
+	--accent-filter: var(--accent-filter-cats);
 	--banner-text: var(--banner-text-cats);
 }
 page:has(nav a:nth-child(6):hover) {
 	--accent-color: var(--accent-color-resources);
-	--accent-filter-main: var(--accent-filter-6);
+	--accent-filter: var(--accent-filter-resources);
 	--banner-text: var(--banner-text-resources);
 }
 page:has(nav a:nth-child(7):hover) {
 	--accent-color: var(--accent-color-contact);
-	--accent-filter-main: var(--accent-filter-7);
+	--accent-filter: var(--accent-filter-contact);
 	--banner-text: var(--banner-text-contact);
 }
 page:has(nav a:hover) {
