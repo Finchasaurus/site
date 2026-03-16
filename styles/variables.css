@@ -77,6 +77,7 @@
 	--banner-text-contact: "Let's get in touch!";
 	--banner-text-nojs: "Javascript-free mode";
 	--banner-text-changelog: "Changelog";
+	--banner-text-sitemap: "Sitemap";
 }
 
 body[page="home"] {
@@ -129,6 +130,12 @@ body[page="no-js"] {
 
 body[page="changelog"] {
 	--banner-text: var(--banner-text-changelog);
+	--accent-color: var(--accent-color-default);
+	--accent-filter: var(--accent-filter-default);
+}
+
+body[page="sitemap"] {
+	--banner-text: var(--banner-text-sitemap);
 	--accent-color: var(--accent-color-default);
 	--accent-filter: var(--accent-filter-default);
 }
