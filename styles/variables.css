@@ -67,56 +67,56 @@
 	} */
 
 	--banner-text: "";
-	--banner-text-1: "Welcome to my little site!";
-	--banner-text-2: "A little about me";
-	--banner-text-3: "Some stuff I do";
-	--banner-text-4: "Some of my favourite things";
-	--banner-text-5: "Meow meow meow I love my cat";
-	--banner-text-6: "Cool ahh stuff";
-	--banner-text-7: "Let's get in touch!";
 
+	--banner-text-home: "Welcome to my little site!";
+	--banner-text-about: "A little about me";
+	--banner-text-skills: "Some stuff I do";
+	--banner-text-favorites: "Some of my favourite things";
+	--banner-text-cats: "Meow meow meow I love my cat";
+	--banner-text-resources: "Cool ahh stuff";
+	--banner-text-contact: "Let's get in touch!";
 	--banner-text-nojs: "Javascript-free mode";
 	--banner-text-changelog: "Changelog";
 }
 
 body[page="home"] {
-	--banner-text: var(--banner-text-1);
+	--banner-text: var(--banner-text-home);
 	--accent-color-main: var(--accent-color-1);
 	--accent-filter-main: var(--accent-filter-1);
 }
 
 body[page="projects"] {
-	--banner-text: var(--banner-text-2);
+	--banner-text: var(--banner-text-about);
 	--accent-color-main: var(--accent-color-2);
 	--accent-filter-main: var(--accent-filter-2);
 }
 
 body[page="skills"] {
-	--banner-text: var(--banner-text-3);
+	--banner-text: var(--banner-text-skills);
 	--accent-color-main: var(--accent-color-3);
 	--accent-filter-main: var(--accent-filter-3);
 }
 
 body[page="favorites"] {
-	--banner-text: var(--banner-text-4);
+	--banner-text: var(--banner-text-favorites);
 	--accent-color-main: var(--accent-color-4);
 	--accent-filter-main: var(--accent-filter-4);
 }
 
 body[page="cats"] {
-	--banner-text: var(--banner-text-5);
+	--banner-text: var(--banner-text-cats);
 	--accent-color-main: var(--accent-color-5);
 	--accent-filter-main: var(--accent-filter-5);
 }
 
 body[page="resources"] {
-	--banner-text: var(--banner-text-6);
+	--banner-text: var(--banner-text-resources);
 	--accent-color-main: var(--accent-color-6);
 	--accent-filter-main: var(--accent-filter-6);
 }
 
 body[page="contact"] {
-	--banner-text: var(--banner-text-7);
+	--banner-text: var(--banner-text-contact);
 	--accent-color-main: var(--accent-color-7);
 	--accent-filter-main: var(--accent-filter-7);
 }
