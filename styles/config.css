@@ -2,10 +2,10 @@
 	filter: var(--accent-filter-main);
 }
 [accent="color"] {
-	color: var(--accent-color-main);
+	color: var(--accent-color);
 }
 [accent="background"] {
-	background-color: var(--accent-color-main);
+	background-color: var(--accent-color);
 }
 [accent="none"] {
 	color: inherit;

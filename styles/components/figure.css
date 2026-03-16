@@ -6,7 +6,7 @@ details {
 	border: var(--accent-border);
 
 	& figcaption {
-		background: var(--accent-color-main);
+		background: var(--accent-color);
 		color: var(--accent-color-text);
 		margin: 0;
 		border: none;
@@ -27,7 +27,7 @@ details {
 
 	& > a:hover {
 		color: var(--accent-color-text);
-		background: var(--accent-color-main);
+		background: var(--accent-color);
 	}
 
 	& img {
@@ -44,7 +44,7 @@ details {
 
 		&:hover {
 			text-decoration: underline;
-			background: var(--accent-color-main);
+			background: var(--accent-color);
 		}
 	}
 }

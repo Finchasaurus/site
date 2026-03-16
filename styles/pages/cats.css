@@ -1,12 +1,12 @@
 details {
 	&:hover {
 		background-color: var(--container-color);
-		color: var(--accent-color-main);
+		color: var(--accent-color);
 	}
 	&:open {
 		summary {
 			border-bottom: var(--accent-border);
-			background-color: var(--accent-color-main);
+			background-color: var(--accent-color);
 			color: var(--accent-color-text);
 		}
 	}
@@ -29,7 +29,7 @@ details {
 		width: 100%;
 		&:hover {
 			color: var(--accent-color-text);
-			background-color: var(--accent-color-main);
+			background-color: var(--accent-color);
 			text-decoration: underline;
 		}
 	}

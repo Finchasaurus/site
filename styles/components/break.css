@@ -1,6 +1,6 @@
 break {
 	display: block;
-	background-color: var(--accent-color-main);
+	background-color: var(--accent-color);
 
 	&[horizontal] {
 		width: 100%;
@@ -9,8 +9,8 @@ break {
 		&[type="dotted"] {
 			background: repeating-linear-gradient(
 				to right,
-				var(--accent-color-main) 0,
-				var(--accent-color-main) 2px,
+				var(--accent-color) 0,
+				var(--accent-color) 2px,
 				transparent 2px,
 				transparent 6px
 			);
@@ -24,8 +24,8 @@ break {
 		&[type="dotted"] {
 			background: repeating-linear-gradient(
 				to bottom,
-				var(--accent-color-main) 0,
-				var(--accent-color-main) 2px,
+				var(--accent-color) 0,
+				var(--accent-color) 2px,
 				transparent 2px,
 				transparent 6px
 			);
@@ -39,8 +39,8 @@ break {
 	&[type="dotted"] {
 		background: repeating-linear-gradient(
 			to right,
-			var(--accent-color-main) 0,
-			var(--accent-color-main) 2px,
+			var(--accent-color) 0,
+			var(--accent-color) 2px,
 			transparent 2px,
 			transparent 6px
 		);

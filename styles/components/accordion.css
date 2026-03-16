@@ -42,7 +42,7 @@ details {
 	}
 
 	&:hover {
-		background-color: var(--accent-color-main);
+		background-color: var(--accent-color);
 		color: var(--accent-color-text);
 
 		summary img {
@@ -66,7 +66,9 @@ details {
 			width: auto;
 			object-fit: contain;
 
-			transition: left 0.5s ease, transform 0.5s ease;
+			transition:
+				left 0.5s ease,
+				transform 0.5s ease;
 		}
 	}
 
@@ -83,7 +85,9 @@ details {
 		flex: 1 1 auto;
 		content-visibility: hidden;
 		opacity: 0;
-		transition: opacity 0.3s ease, content-visibility 0.5s ease allow-discrete;
+		transition:
+			opacity 0.3s ease,
+			content-visibility 0.5s ease allow-discrete;
 	}
 
 	&[open] {

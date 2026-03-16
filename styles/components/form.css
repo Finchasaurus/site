@@ -32,7 +32,7 @@ radio-group {
 		&:has(input:checked),
 		&:hover,
 		&:active {
-			background-color: var(--accent-color-main);
+			background-color: var(--accent-color);
 			color: var(--accent-color-text);
 		}
 	}

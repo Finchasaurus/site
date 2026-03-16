@@ -1,14 +1,14 @@
 :root {
 	/* Colors */
-	--accent-color-main: black;
-	--accent-color-0: black;
-	--accent-color-1: black;
-	--accent-color-2: #ff5584;
-	--accent-color-3: #ffa361;
-	--accent-color-4: #fddd70;
-	--accent-color-5: #a4d25e;
-	--accent-color-6: #2ca6d6;
-	--accent-color-7: #7f76c7;
+	--accent-color: black;
+	--accent-color-default: black;
+	--accent-color-home: black;
+	--accent-color-about: #ff5584;
+	--accent-color-skills: #ffa361;
+	--accent-color-favorites: #fddd70;
+	--accent-color-cats: #a4d25e;
+	--accent-color-resources: #2ca6d6;
+	--accent-color-contact: #7f76c7;
 
 	--accent-filter-0: brightness(0) saturate(100%);
 	--accent-filter-1: brightness(0) saturate(100%);
@@ -33,7 +33,7 @@
 
 	/* Borders */
 	--border-width: 1px;
-	--accent-border: var(--accent-color-main) var(--border-width) solid;
+	--accent-border: var(--accent-color) var(--border-width) solid;
 
 	/* Transitions */
 	--transition-fast: 150ms ease-in-out;
@@ -56,9 +56,9 @@
 
 	/* The dark mode is fucking stupid as shit */
 	/* @media (prefers-color-scheme: dark) {
-		--accent-color-main: white;
-		--accent-color-0: white;
-		--accent-color-1: white;
+		--accent-color: white;
+		--accent-color-default: white;
+		--accent-color-home: white;
 		--accent-filter-0: brightness(0) invert(1);
 		--accent-filter-1: brightness(0) invert(1);
 		--accent-color-text: black;
@@ -81,58 +81,58 @@
 
 body[page="home"] {
 	--banner-text: var(--banner-text-home);
-	--accent-color-main: var(--accent-color-1);
+	--accent-color: var(--accent-color-home);
 	--accent-filter-main: var(--accent-filter-1);
 }
 
 body[page="projects"] {
 	--banner-text: var(--banner-text-about);
-	--accent-color-main: var(--accent-color-2);
+	--accent-color: var(--accent-color-about);
 	--accent-filter-main: var(--accent-filter-2);
 }
 
 body[page="skills"] {
 	--banner-text: var(--banner-text-skills);
-	--accent-color-main: var(--accent-color-3);
+	--accent-color: var(--accent-color-skills);
 	--accent-filter-main: var(--accent-filter-3);
 }
 
 body[page="favorites"] {
 	--banner-text: var(--banner-text-favorites);
-	--accent-color-main: var(--accent-color-4);
+	--accent-color: var(--accent-color-favorites);
 	--accent-filter-main: var(--accent-filter-4);
 }
 
 body[page="cats"] {
 	--banner-text: var(--banner-text-cats);
-	--accent-color-main: var(--accent-color-5);
+	--accent-color: var(--accent-color-cats);
 	--accent-filter-main: var(--accent-filter-5);
 }
 
 body[page="resources"] {
 	--banner-text: var(--banner-text-resources);
-	--accent-color-main: var(--accent-color-6);
+	--accent-color: var(--accent-color-resources);
 	--accent-filter-main: var(--accent-filter-6);
 }
 
 body[page="contact"] {
 	--banner-text: var(--banner-text-contact);
-	--accent-color-main: var(--accent-color-7);
+	--accent-color: var(--accent-color-contact);
 	--accent-filter-main: var(--accent-filter-7);
 }
 
 body[page="no-js"] {
 	--banner-text: var(--banner-text-nojs);
-	--accent-color-main: var(--accent-color-0);
+	--accent-color: var(--accent-color-default);
 	--accent-filter-main: var(--accent-filter-0);
 }
 
 body[page="changelog"] {
 	--banner-text: var(--banner-text-changelog);
-	--accent-color-main: var(--accent-color-0);
+	--accent-color: var(--accent-color-default);
 	--accent-filter-main: var(--accent-filter-0);
 }
 
 body {
-	--accent-border: var(--accent-color-main) var(--border-width) solid;
+	--accent-border: var(--accent-color) var(--border-width) solid;
 }

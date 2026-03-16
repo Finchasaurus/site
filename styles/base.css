@@ -26,12 +26,12 @@ page {
 }
 
 a {
-	color: var(--accent-color-main);
+	color: var(--accent-color);
 	text-decoration: underline;
 }
 
 button {
-	color: var(--accent-color-main);
+	color: var(--accent-color);
 }
 
 body *[tooltip] {
@@ -46,7 +46,7 @@ body *[tooltip] {
 		bottom: 100%;
 		left: 50%;
 		transform: translateX(-50%);
-		background-color: var(--accent-color-main);
+		background-color: var(--accent-color);
 		color: var(--accent-color-text);
 		padding: 0.3em 0.6em;
 		border-radius: 0.25em;
@@ -112,7 +112,7 @@ h1 {
 textarea,
 textarea:focus-visible {
 	border: var(--accent-border);
-	color: var(--accent-color-main);
+	color: var(--accent-color);
 	resize: none;
 	outline: none;
 }
