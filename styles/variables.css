@@ -86,7 +86,7 @@ body[page="home"] {
 	--accent-filter: var(--accent-filter-home);
 }
 
-body[page="projects"] {
+body[page="about"] {
 	--banner-text: var(--banner-text-about);
 	--accent-color: var(--accent-color-about);
 	--accent-filter: var(--accent-filter-about);
