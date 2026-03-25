@@ -120,3 +120,7 @@ textarea:focus-visible {
 	resize: none;
 	outline: none;
 }
+
+ul {
+	margin: 0;
+}
