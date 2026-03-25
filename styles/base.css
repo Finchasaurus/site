@@ -40,6 +40,10 @@ body *[tooltip] {
 	text-decoration: underline dotted;
 	display: inline-block;
 
+	&[no-decoration] {
+		text-decoration: none;
+	}
+
 	&::after {
 		content: attr(tooltip);
 		position: absolute;
