@@ -75,9 +75,6 @@
 	--banner-text-cats: "Meow meow meow I love my cat";
 	--banner-text-resources: "Cool ahh stuff";
 	--banner-text-contact: "Let's get in touch!";
-	--banner-text-nojs: "Javascript-free mode";
-	--banner-text-changelog: "Changelog";
-	--banner-text-sitemap: "Sitemap";
 }
 
 body[page="home"] {
@@ -122,20 +119,27 @@ body[page="contact"] {
 	--accent-filter: var(--accent-filter-contact);
 }
 
+/* Non-Main navigation pages */
 body[page="no-js"] {
-	--banner-text: var(--banner-text-nojs);
+	--banner-text: "Javascript-free mode";
 	--accent-color: var(--accent-color-default);
 	--accent-filter: var(--accent-filter-default);
 }
 
 body[page="changelog"] {
-	--banner-text: var(--banner-text-changelog);
+	--banner-text: "Changelog";
 	--accent-color: var(--accent-color-default);
 	--accent-filter: var(--accent-filter-default);
 }
 
 body[page="sitemap"] {
-	--banner-text: var(--banner-text-sitemap);
+	--banner-text: "Sitemap";
+	--accent-color: var(--accent-color-default);
+	--accent-filter: var(--accent-filter-default);
+}
+
+body[page="not-found"] {
+	--banner-text: "Your page was not found :(";
 	--accent-color: var(--accent-color-default);
 	--accent-filter: var(--accent-filter-default);
 }
