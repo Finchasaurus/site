@@ -105,6 +105,12 @@ section {
 h1 {
 	margin: 0;
 	padding: 0;
+	/* padding-bottom: var(--spacing-sm); */
+}
+
+p {
+	margin-top: var(--spacing-sm);
+	margin-bottom: var(--spacing-sm);
 }
 
 .button {
@@ -126,4 +132,8 @@ textarea:focus-visible {
 
 ul {
 	margin: 0;
+}
+
+img {
+	width: 100%;
 }
