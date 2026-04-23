@@ -34,10 +34,13 @@ button {
 	color: var(--accent-color);
 }
 
-body *[tooltip] {
-	position: relative;
+span[tooltip] {
 	cursor: help;
 	text-decoration: underline dotted;
+}
+
+body *[tooltip] {
+	position: relative;
 	display: inline-block;
 
 	&[no-decoration] {
