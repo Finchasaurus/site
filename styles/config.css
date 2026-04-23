@@ -1,16 +1,36 @@
-[accent="filter"] {
+[accent~="filter"] {
 	filter: var(--accent-filter);
 }
-[accent="color"] {
+[accent~="color"] {
 	color: var(--accent-color);
 }
-[accent="background"] {
+[accent~="background"] {
 	background-color: var(--accent-color);
 }
-[accent="none"] {
+[accent~="none"] {
 	color: inherit;
 	background-color: inherit;
 	filter: none;
+}
+[accent~="tint"] {
+	position: relative;
+
+	> ::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: var(--accent-color);
+		mix-blend-mode: color;
+		opacity: 1;
+		pointer-events: none;
+		transition: opacity var(--transition-fast);
+	}
+}
+[accent~="hover-clear"]:hover {
+	filter: none;
+	::after {
+		opacity: 0;
+	}
 }
 body:has(*[accent="none"]) {
 	color: inherit;
