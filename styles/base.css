@@ -31,7 +31,16 @@ a {
 }
 
 button {
-	color: var(--accent-color);
+	color: var(--accent-color-text);
+	background-color: var(--accent-color);
+	padding: var(--spacing-xs);
+	cursor: pointer;
+	border: var(--accent-border);
+
+	&:hover {
+		background-color: var(--accent-color-text);
+		color: var(--accent-color);
+	}
 }
 
 span[tooltip] {

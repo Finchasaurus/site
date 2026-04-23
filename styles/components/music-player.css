@@ -9,10 +9,8 @@
 		background-color: var(--container-color);
 		border: none;
 		padding: var(--spacing-sm);
-		cursor: pointer;
-		display: flex;
-		justify-content: center;
 		flex: 1;
+		color: var(--accent-color);
 
 		&:hover {
 			background-color: var(--accent-color);
