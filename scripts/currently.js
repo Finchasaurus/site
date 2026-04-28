@@ -109,6 +109,7 @@ async function loadAniList() {
 		body: JSON.stringify({ query }),
 	}).catch(() => {
 		// Structure the data the same but with error values so it doesn't break the UI
+		// This is a workaround for when the CORS proxy is down, which happens often since it's free and public
 		return {
 			json: async () => ({
 				data: {
