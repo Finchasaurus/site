@@ -51,7 +51,7 @@ function renderAniList(data) {
 	entries.sort((a, b) => b.updatedAt - a.updatedAt);
 	const entry = entries[0].media;
 
-	const title = entry.title.english;
+	const title = entry.title.userPreferred;
 	const url = entry.siteUrl;
 	const image = entry.coverImage.large;
 
@@ -88,7 +88,7 @@ async function loadAniList() {
                     updatedAt
                     media {
                         title {
-                            english
+                            userPreferred
                         }
                         siteUrl
                         coverImage {
@@ -107,6 +107,34 @@ async function loadAniList() {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({ query }),
+	}).catch(() => {
+		// Structure the data the same but with error values so it doesn't break the UI
+		return {
+			json: async () => ({
+				data: {
+					MediaListCollection: {
+						lists: [
+							{
+								entries: [
+									{
+										updatedAt: 0,
+										media: {
+											title: {
+												userPreferred: "An error occurred fetching data",
+											},
+											siteUrl: "#",
+											coverImage: {
+												large: "./assets/anime-error.jpg",
+											},
+										},
+									},
+								],
+							},
+						],
+					},
+				},
+			}),
+		};
 	});
 
 	const data = await result.json();
