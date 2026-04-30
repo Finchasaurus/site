@@ -5,13 +5,24 @@
     <link>https://hoshiai.space/changelog</link>
     <description>Changelog for hoshiai.space</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Mar 2026 21:45:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2026 13:20:00 MST</lastBuildDate>
+
+    <item>
+      <title>Filled out About page</title>
+      <link>https://hoshiai.space/about</link>
+      <description>
+        Actually filled out a whole lot in the About page
+      </description>
+      <pubDate>Thu, 30 Apr 2026 13:20:00 MST</pubDate>
+      <guid isPermaLink="true">https://hoshiai.space/about</guid>
+    </item>
 
     <item>
       <title>Created AniChoose tool!</title>
       <link>https://anichoose.hoshiai.space/</link>
-      <description>Created a tool to help you choose your anime by matching them up against each-other</description>
-      <pubDate>Tue, 7 Apr 2026 01:00:00 GMT</pubDate>
+      <description>Created a tool to help you choose your anime by matching them up against
+        each-other</description>
+      <pubDate>Tue, 7 Apr 2026 18:00:00 MST</pubDate>
       <guid isPermaLink="true">https://anichoose.hoshiai.space/</guid>
     </item>
 
@@ -19,9 +30,9 @@
       <title>RSS changelog feed added</title>
       <link>https://hoshiai.space/changelog#rss-added</link>
       <description>Initial release of the RSS changelog feed.</description>
-      <pubDate>Tue, 10 Mar 2026 21:45:00 GMT</pubDate>
+      <pubDate>Tue, 10 Mar 2026 14:45:00 MST</pubDate>
       <guid isPermaLink="true">https://hoshiai.space/changelog#rss-added</guid>
     </item>
-    
+
   </channel>
 </rss>
