@@ -1,0 +1,11 @@
+.pfp {
+	aspect-ratio: 1;
+	object-fit: cover;
+	width: 100%;
+}
+
+.profile-box {
+	float: left;
+	width: var(--sidebar-width);
+	margin-right: var(--spacing-sm);
+}

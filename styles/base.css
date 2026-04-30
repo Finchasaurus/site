@@ -107,8 +107,11 @@ layout {
 }
 
 section {
-	border-bottom: var(--accent-border);
 	padding-bottom: var(--spacing-sm);
+
+	&:not(:last-child) {
+		border-bottom: var(--accent-border);
+	}
 }
 
 h1 {
