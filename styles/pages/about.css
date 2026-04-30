@@ -9,3 +9,17 @@
 	width: var(--sidebar-width);
 	margin-right: var(--spacing-sm);
 }
+
+details {
+	border: var(--accent-border);
+	margin: var(--spacing-xs) 0;
+
+	summary {
+		padding: var(--spacing-sm);
+		width: 100%;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
