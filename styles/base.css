@@ -15,7 +15,8 @@ body {
 page {
 	position: relative;
 	background: var(--container-color);
-	border: var(--accent-border);
+	border-left: var(--accent-border);
+	border-right: var(--accent-border);
 
 	width: 100%;
 	max-width: var(--page-width);
