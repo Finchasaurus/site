@@ -151,9 +151,7 @@ async function loadAniList() {
 	renderAniList(data);
 }
 
-const interval = 100_000;
-
 loadLastFM();
-setInterval(loadLastFM, interval);
+setInterval(loadLastFM, 10 * 1000); // Refresh every 10 seconds
 
 loadAniList();
