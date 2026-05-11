@@ -8,6 +8,22 @@
     <lastBuildDate>Thu, 30 Apr 2026 13:20:00 MST</lastBuildDate>
 
     <item>
+      <title>Converted the entire site to use SSI directives</title>
+      <link>https://github.com/Finchasaurus/site/commit/3398cd318ccb9120fcef0ea07d46b1396b6b271a</link>
+      <description>
+        The entire site now uses SSI directives to make my life so much easier when it comes to
+        making changes.
+        Since I spent a decade perfecting my development environment I ended up also creating a
+        python script to visualize SSI directives locally rather than use Nekode. Wait for it to be
+        released soon (or just look in the site's files)
+      </description>
+      <pubDate>Mon, 11 May 2026 14:03:00 MST</pubDate>
+      <guid isPermaLink="true">
+        https://github.com/Finchasaurus/site/commit/3398cd318ccb9120fcef0ea07d46b1396b6b271a
+      </guid>
+    </item>
+
+    <item>
       <title>Filled out About page</title>
       <link>https://hoshiai.space/about</link>
       <description>
