@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="/styles/variables.css" />
+		<link rel="stylesheet" href="/styles/components/navigation.css" />
+		<link rel="stylesheet" href="/styles/base.css" />
+		<link rel="stylesheet" href="/styles/config.css" />
+		<link rel="stylesheet" href="/styles/components/header.css" />
+		<link rel="stylesheet" href="/styles/components/footer.css" />
+		<link rel="stylesheet" href="/styles/components/banner.css" />
+		<link rel="stylesheet" href="/styles/components/group.css" />
+		<link rel="stylesheet" href="/styles/components/figure.css" />
+
+		<!--# block name="styles" -->
+		<!--# endblock -->
+
+		<link rel="icon" type="image/x-icon" href="/assets/shinji.png" />
+
+		<title><!--# block name="title" -->Hoshiai.Space<!--# endblock --></title>
+	</head>
+
+	<noscript>
+		<style>
+			.with-js,
+			with-js {
+				display: none;
+			}
+		</style>
+	</noscript>
+
+	<body page='<!--# block name="page" -->main<!--# endblock -->'>
+		<page>
+			<header accent="color"><!--# block name="header" -->Hoshiai.Space<!--# endblock --></header>
+
+			<!--# include file="~/includes/nav.html"-->
+
+			<banner accent="background"><scrolling-text></scrolling-text></banner>
+
+			<layout accent="color">
+				<!--# block name="sidebar"--><!--# endblock-->
+
+				<main><!--# block name="content" --><!--# endblock --></main>
+			</layout>
+
+			<!--# include file="~/includes/footer.html" -->
+		</page>
+
+		<!--# block name="scripts" --><!--# endblock -->
+	</body>
+</html>
