@@ -44,6 +44,44 @@ button {
 	}
 }
 
+.filter-toggle {
+	display: flex;
+	cursor: pointer;
+
+	input {
+		display: none;
+	}
+
+	span {
+		color: var(--accent-color-text);
+		background-color: var(--accent-color);
+		padding: var(--spacing-xs);
+		border: var(--accent-border);
+		user-select: none;
+		width: 100%;
+	}
+
+	&:hover span {
+		background-color: var(--accent-color-text);
+		color: var(--accent-color);
+	}
+
+	&:has(input:checked) span {
+		background-color: var(--accent-color-text);
+		color: var(--accent-color);
+	}
+
+	&:has(input:checked) span::after {
+		content: " (Off)";
+		opacity: 0.8;
+	}
+
+	&:not(:has(input:checked)) span::after {
+		content: " (On)";
+		opacity: 0.8;
+	}
+}
+
 span[tooltip] {
 	cursor: help;
 	text-decoration: underline dotted;

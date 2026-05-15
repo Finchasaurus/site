@@ -65,35 +65,32 @@
 <section class="carousel" accent="tint hover-clear">
 	<div class="carousel-header">
 		<h1>Recent Project</h1>
-		<group vertical>
-			<button class="carousel-filtering-button with-js">Toggle Image Filter</button>
-			<button requires="scroll" popovertarget="carousel-warning">Incompatabilities</button>
+		<button requires="scroll" popovertarget="carousel-warning">Incompatabilities</button>
 
-			<dialog id="carousel-warning" popover>
-				<div>
-					This CSS feature requires
-					<a
-						href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::scroll-button#browser_compatibility"
-					>
-						::scroll-button()
-					</a>
-					,
-					<a
-						href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::scroll-marker#browser_compatibility"
-					>
-						::scroll-marker
-					</a>
-					, and
-					<a
-						href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::scroll-marker-group#browser_compatibility"
-						>::scroll-marker-group
-					</a>
-					but your browser doesn't support this feature. To use the carousel effectively, the scrollbar is
-					still an available option.
-				</div>
-				<button popovertarget="carousel-warning" popovertargetaction="hide">Close</button>
-			</dialog>
-		</group>
+		<dialog id="carousel-warning" popover>
+			<div>
+				This CSS feature requires
+				<a
+					href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::scroll-button#browser_compatibility"
+				>
+					::scroll-button()
+				</a>
+				,
+				<a
+					href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::scroll-marker#browser_compatibility"
+				>
+					::scroll-marker
+				</a>
+				, and
+				<a
+					href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::scroll-marker-group#browser_compatibility"
+					>::scroll-marker-group
+				</a>
+				but your browser doesn't support this feature. To use the carousel effectively, the scrollbar is still
+				an available option.
+			</div>
+			<button popovertarget="carousel-warning" popovertargetaction="hide">Close</button>
+		</dialog>
 	</div>
 	<p>
 		My Interactive Computer Graphics course final project was to render 3D scenes in a non-photorealistic pixelated
@@ -140,5 +137,4 @@
 <script src="/scripts/music-player.js"></script>
 <script src="/scripts/currently.js"></script>
 <script src="/scripts/changelog.js"></script>
-<script src="/scripts/carousel.js"></script>
 <!--# endblock -->
