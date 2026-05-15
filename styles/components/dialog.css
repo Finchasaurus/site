@@ -1,0 +1,16 @@
+dialog {
+	padding: var(--spacing-xs);
+	width: max-content;
+	max-width: 450px;
+	color: var(--accent-text);
+	border: var(--accent-border);
+
+	button {
+		margin-top: var(--spacing-sm);
+	}
+}
+
+dialog::backdrop {
+	opacity: 0.5;
+	background-color: black;
+}
