@@ -64,6 +64,7 @@ function renderAniList(data) {
 	img.alt = title;
 
 	link.href = url;
+	link.target = "_blank";
 
 	caption.textContent = title;
 }
