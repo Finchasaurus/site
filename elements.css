@@ -15,10 +15,18 @@
 	transform-style: preserve-3d;
 }
 
-.site-box a *,
-.site-box .top-dot,
-.site-box .bottom-dot {
+.site-box p {
+	color: white;
+}
+
+.site-box .sitefeature {
 	visibility: hidden;
+	position: absolute;
+}
+
+.site-box .site-title {
+	visibility: hidden;
+	position: absolute;
 }
 
 .site-box a {
