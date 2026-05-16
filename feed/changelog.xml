@@ -5,7 +5,16 @@
     <link>https://hoshiai.space/changelog</link>
     <description>Changelog for hoshiai.space</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 May 2026 14:03:00 MST</lastBuildDate>
+    <lastBuildDate>Sat, 16 May 2026 00:18:00 MST</lastBuildDate>
+
+    <item>
+      <title>Updated elements.css</title>
+      <description>
+        I updated the elements.css to be cooler™ and I spent time making a gif for it but haven't got it working yet.
+      </description>
+      <pubDate>Sat, 16 May 2026 00:18:00 MST</pubDate>
+      <guid>elements.css 1</guid>
+    </item>
 
     <item>
       <title>Converted the entire site to use SSI directives</title>
