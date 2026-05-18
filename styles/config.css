@@ -1,5 +1,5 @@
 [accent~="filter"] {
-	filter: var(--accent-filter);
+	filter: var(--site-accent-filter, var(--accent-filter));
 }
 [accent~="color"] {
 	color: var(--accent-color);
@@ -21,7 +21,7 @@
 		inset: 0;
 		background: var(--accent-color);
 		mix-blend-mode: color;
-		opacity: 1;
+		opacity: var(--site-tint-opacity, 1);
 		pointer-events: none;
 		transition: opacity var(--transition-fast);
 	}
@@ -50,4 +50,9 @@ body:has(*[accent="none"]) {
 
 img[aspect-one] {
 	aspect-ratio: 1;
+}
+
+body:has(.filter-toggle input:checked) {
+	--site-accent-filter: none;
+	--site-tint-opacity: 0;
 }

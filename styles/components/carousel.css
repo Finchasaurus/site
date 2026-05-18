@@ -115,3 +115,10 @@
 	align-items: center;
 	justify-content: space-between;
 }
+
+[requires~="scroll"] {
+	@supports selector(::scroll-marker) {
+		visibility: hidden;
+		position: absolute;
+	}
+}

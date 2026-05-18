@@ -144,6 +144,9 @@ body[page="not-found"] {
 	--accent-filter: var(--accent-filter-default);
 }
 
+body[page="CS5610"] {
+	--banner-text: "Rendering 3D Scenes in an NPR pixelated style";
+}
 body {
 	--accent-border: var(--accent-color) var(--border-width) solid;
 }

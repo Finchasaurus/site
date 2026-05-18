@@ -51,7 +51,7 @@ function renderAniList(data) {
 	entries.sort((a, b) => b.updatedAt - a.updatedAt);
 	const entry = entries[0].media;
 
-	const title = entry.title.userPreferred;
+	const title = entry.title.english || entry.title.romaji || entry.title.native;
 	const url = entry.siteUrl;
 	const image = entry.coverImage.large;
 
@@ -64,6 +64,7 @@ function renderAniList(data) {
 	img.alt = title;
 
 	link.href = url;
+	link.target = "_blank";
 
 	caption.textContent = title;
 }
@@ -88,7 +89,9 @@ async function loadAniList() {
                     updatedAt
                     media {
                         title {
-                            userPreferred
+                            english
+							romaji
+							native
                         }
                         siteUrl
                         coverImage {
@@ -121,7 +124,7 @@ async function loadAniList() {
 										updatedAt: 0,
 										media: {
 											title: {
-												userPreferred: "An error occurred fetching data",
+												english: "An error occurred fetching data",
 											},
 											siteUrl: "#",
 											coverImage: {
