@@ -157,6 +157,14 @@ h1 {
 	margin: 0;
 	padding: 0;
 	/* padding-bottom: var(--spacing-sm); */
+
+	a {
+		text-decoration: none;
+	}
+
+	&:hover a {
+		text-decoration: underline;
+	}
 }
 
 p {
