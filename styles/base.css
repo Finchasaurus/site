@@ -89,7 +89,6 @@ span[tooltip] {
 
 [tooltip] {
 	position: relative;
-	display: inline-block;
 
 	&[no-decoration] {
 		text-decoration: none;
@@ -147,6 +146,9 @@ layout {
 
 section {
 	padding-bottom: var(--spacing-sm);
+	& > :only-child {
+		padding-top: var(--spacing-sm);
+	}
 
 	&:not(:last-child) {
 		border-bottom: var(--accent-border);

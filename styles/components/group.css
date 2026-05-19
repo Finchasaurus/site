@@ -16,3 +16,11 @@ group {
 		width: 100%;
 	}
 }
+
+flag-group {
+	display: flex;
+
+	* {
+		flex: 1;
+	}
+}
