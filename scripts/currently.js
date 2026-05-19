@@ -1,3 +1,18 @@
+function renderElement(container, data) {
+	const img = container.querySelector("img");
+	img.classList.add("placeholder");
+	const link = container.querySelector("a");
+	const caption = link.querySelector("figcaption");
+
+	img.src = data.image;
+	img.alt = data.title;
+
+	link.href = data.url;
+	link.target = "_blank";
+
+	caption.textContent = data.title;
+}
+
 function renderLastFM(data) {
 	const trackName = data.track.name;
 	const trackUrl = data.track.url;
@@ -5,16 +20,12 @@ function renderLastFM(data) {
 	const trackImage = data.track.image[2]["#text"];
 
 	const container = document.getElementById("listening");
-	const img = container.querySelector("img");
-	const link = container.querySelector("a");
-	const caption = link.querySelector("figcaption");
 
-	img.src = trackImage;
-	img.alt = `${trackName} cover`;
-
-	link.href = trackUrl;
-
-	caption.textContent = `${trackName} - ${trackArtist}`;
+	renderElement(container, {
+		title: `${trackName} - ${trackArtist}`,
+		url: trackUrl,
+		image: trackImage,
+	});
 }
 
 async function loadLastFM() {
@@ -56,17 +67,12 @@ function renderAniList(data) {
 	const image = entry.coverImage.large;
 
 	const container = document.querySelector("#watching");
-	const img = container.querySelector("img");
-	const link = container.querySelector("a");
-	const caption = link.querySelector("figcaption");
 
-	img.src = image;
-	img.alt = title;
-
-	link.href = url;
-	link.target = "_blank";
-
-	caption.textContent = title;
+	renderElement(container, {
+		title,
+		url,
+		image,
+	});
 }
 
 async function loadAniList() {

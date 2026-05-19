@@ -198,3 +198,8 @@ ul {
 img {
 	width: 100%;
 }
+
+.placeholder {
+	background-size: cover;
+	background-image: url("/assets/placeholder.jpg");
+}
