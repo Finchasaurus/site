@@ -1,8 +1,10 @@
-from http.server import HTTPServer, SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import re
 import random
 import sys
+import time
+import json
 
 ROOT = Path(__file__).parent.resolve()
 
@@ -25,6 +27,62 @@ stats_pattern = re.compile(
     r'<!--\s*#\s*(views|updates|followers)\s*-->',
     re.IGNORECASE
 )
+
+reload_version = 0
+
+RELOAD_SCRIPT = """
+<script>
+(async function () {
+    let current = null;
+
+    async function check() {
+        try {
+            const res = await fetch("/__reload__");
+            const data = await res.json();
+
+            if (current === null) {
+                current = data.version;
+            }
+            else if (current !== data.version) {
+                location.reload();
+            }
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
+    setInterval(check, 1000);
+})();
+</script>
+"""
+
+def scan_latest_mtime():
+    latest = 0
+
+    for path in ROOT.rglob("*"):
+        if path.is_file():
+            try:
+                latest = max(
+                    latest,
+                    path.stat().st_mtime
+                )
+            except OSError:
+                pass
+
+    return latest
+
+_last_scan = scan_latest_mtime()
+
+def update_reload_version():
+    global _last_scan
+    global reload_version
+
+    latest = scan_latest_mtime()
+
+    if latest > _last_scan:
+        _last_scan = latest
+        reload_version += 1
 
 def get_site_stat(name: str) -> str:
     """
@@ -168,6 +226,23 @@ class SSIHandler(SimpleHTTPRequestHandler):
         )
 
     def do_GET(self):
+        if self.path == "/__reload__":
+            update_reload_version()
+
+            payload = json.dumps({
+                "version": reload_version
+            }).encode("utf-8")
+
+            self.send_response(200)
+            self.send_header(
+                "Content-Type",
+                "application/json"
+            )
+            self.end_headers()
+
+            self.wfile.write(payload)
+            return
+
         path = self.path.split("?", 1)[0]
 
         if path == "/":
@@ -189,6 +264,14 @@ class SSIHandler(SimpleHTTPRequestHandler):
                 content = process_file(
                     full_path
                 )
+
+                if "</body>" in content:
+                    content = content.replace(
+                        "</body>",
+                        RELOAD_SCRIPT + "\n</body>"
+                    )
+                else:
+                    content += RELOAD_SCRIPT
 
                 self.send_response(200)
                 self.send_header(
