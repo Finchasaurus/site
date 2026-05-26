@@ -2,13 +2,27 @@ const players = document.querySelectorAll("#music-player");
 
 players.forEach((player) => {
 	const audio = player.querySelector("audio");
+	const source = audio.querySelector("source");
+
 	const playPauseButton = player.querySelector("#play-pause");
 	const forwardButton = player.querySelector("#forward");
 	const backwardButton = player.querySelector("#backward");
 
-	playPauseButton.addEventListener("click", () => {
+	let loaded = false;
+
+	function ensureLoaded() {
+		if (loaded) return;
+
+		audio.src = source.dataset.src;
+		audio.load();
+		loaded = true;
+	}
+
+	playPauseButton.addEventListener("click", async () => {
+		ensureLoaded();
+
 		if (audio.paused) {
-			audio.play();
+			await audio.play();
 			playPauseButton.textContent = "⏸";
 		} else {
 			audio.pause();
