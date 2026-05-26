@@ -6,7 +6,11 @@
 			"type": "shell",
 			"command": "python dev-server.py ${relativeFile}",
 			"isBackground": true,
-			"problemMatcher": []
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		}
 	]
 }
