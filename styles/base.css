@@ -26,6 +26,10 @@ page {
 	flex-direction: column;
 }
 
+main {
+	max-width: calc(var(--page-width) - var(--sidebar-width));
+}
+
 a {
 	color: var(--accent-color);
 	text-decoration: underline;
