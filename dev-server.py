@@ -1,8 +1,8 @@
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+from http.server import HTTPServer, SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from random import random
 import re
 import random
+import sys
 
 ROOT = Path(__file__).parent.resolve()
 
@@ -219,13 +219,21 @@ class SSIHandler(SimpleHTTPRequestHandler):
         super().do_GET()
 
 def main():
-    server = HTTPServer(
+    server = ThreadingHTTPServer(
         ("localhost", 8000),
         SSIHandler
     )
 
+    # default page to open
+    open_page = "/"
+
+    if len(sys.argv) > 1:
+        open_page = sys.argv[1].lstrip("/")
+
+    url = f"http://localhost:8000/{open_page}"
+
     print("Server running:")
-    print("http://localhost:8000")
+    print(url)
     print("Press Ctrl+C to stop")
 
     try:

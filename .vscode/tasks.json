@@ -4,8 +4,9 @@
 		{
 			"label": "Run SSI Server",
 			"type": "shell",
-			"command": "python dev-server.py",
-			"isBackground": true
+			"command": "python dev-server.py ${relativeFile}",
+			"isBackground": true,
+			"problemMatcher": []
 		}
 	]
 }
