@@ -74,6 +74,11 @@ button {
 	&:has(input:checked) span {
 		background-color: var(--accent-color-text);
 		color: var(--accent-color);
+
+		&:hover {
+			background-color: var(--accent-color);
+			color: var(--accent-color-text);
+		}
 	}
 
 	&:has(input:checked) span::after {
