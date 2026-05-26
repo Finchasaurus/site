@@ -27,7 +27,8 @@ page {
 }
 
 main {
-	max-width: calc(var(--page-width) - var(--sidebar-width));
+	min-width: 0;
+	flex: 1;
 }
 
 a {
