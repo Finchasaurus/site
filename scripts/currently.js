@@ -42,18 +42,34 @@ async function loadLastFM() {
 	}
 
 	const url = `https://lastfm-last-played.biancarosa.com.br/meowbyte/latest-song`;
-	const result = await fetch(url);
-	const data = await result.json();
 
-	localStorage.setItem(
-		key,
-		JSON.stringify({
-			timestamp: Date.now(),
-			data,
-		}),
-	);
+	try {
+		const result = await fetch(url);
 
-	renderLastFM(data);
+		if (!result.ok) {
+			throw new Error("Request failed");
+		}
+
+		const data = await result.json();
+
+		// Only cache successful data
+		localStorage.setItem(
+			key,
+			JSON.stringify({
+				timestamp: Date.now(),
+				data,
+			}),
+		);
+
+		renderLastFM(data);
+	} catch (error) {
+		// Render fallback UI WITHOUT caching it
+		renderElement(document.getElementById("listening"), {
+			title: "An error occurred fetching data",
+			url: "#",
+			image: "./assets/music-error.jpg",
+		});
+	}
 }
 
 function renderAniList(data) {
