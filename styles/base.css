@@ -213,3 +213,8 @@ img {
 	background-size: cover;
 	background-image: url("/assets/placeholder.jpg");
 }
+
+sub {
+	display: inline-block;
+	line-height: 1;
+}
