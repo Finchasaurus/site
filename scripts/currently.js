@@ -78,6 +78,7 @@ function renderAniList(data) {
 async function loadAniList() {
 	const key = "anilist_cache";
 	const cached = localStorage.getItem(key);
+
 	if (cached) {
 		const parsed = JSON.parse(cached);
 
@@ -110,54 +111,58 @@ async function loadAniList() {
     }
     `;
 
-	const result = await fetch("https://graphql.anilist.co", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ query }),
-	}).catch(() => {
-		// Structure the data the same but with error values so it doesn't break the UI
-		// This is a workaround for when the CORS proxy is down, which happens often since it's free and public
-		return {
-			json: async () => ({
-				data: {
-					MediaListCollection: {
-						lists: [
-							{
-								entries: [
-									{
-										updatedAt: 0,
-										media: {
-											title: {
-												english: "An error occurred fetching data",
-											},
-											siteUrl: "#",
-											coverImage: {
-												large: "./assets/anime-error.jpg",
-											},
+	try {
+		const result = await fetch("https://graphql.anilist.co", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ query }),
+		});
+
+		if (!result.ok) {
+			throw new Error("Request failed");
+		}
+
+		const data = await result.json();
+
+		// Only cache successful data
+		localStorage.setItem(
+			key,
+			JSON.stringify({
+				timestamp: Date.now(),
+				data,
+			}),
+		);
+
+		renderAniList(data);
+	} catch (error) {
+		// Render fallback UI WITHOUT caching it
+		renderAniList({
+			data: {
+				MediaListCollection: {
+					lists: [
+						{
+							entries: [
+								{
+									updatedAt: 0,
+									media: {
+										title: {
+											english: "An error occurred fetching data",
+										},
+										siteUrl: "#",
+										coverImage: {
+											large: "./assets/anime-error.jpg",
 										},
 									},
-								],
-							},
-						],
-					},
+								},
+							],
+						},
+					],
 				},
-			}),
-		};
-	});
-
-	const data = await result.json();
-
-	localStorage.setItem(
-		key,
-		JSON.stringify({
-			timestamp: Date.now(),
-			data,
-		}),
-	);
-
-	renderAniList(data);
+			},
+		});
+	}
 }
 
 loadLastFM();
