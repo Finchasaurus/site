@@ -1,3 +1,5 @@
+// if there are future issues just precompute the favicons instead of computing them on the fly
+
 let cachedSvg = null;
 
 async function loadSvg() {
