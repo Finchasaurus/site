@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="103.28857mm"
+   height="100.29444mm"
+   viewBox="0 0 103.28857 100.29444"
+   version="1.1"
+   id="svg1"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showguides="false"
+     inkscape:export-bgcolor="#00000000">
+    <inkscape:page
+       x="0"
+       y="0"
+       width="103.28857"
+       height="100.29444"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-45.828662,-70.521532)">
+    <path
+       sodipodi:type="star"
+       style="fill:#000000;stroke:#ffffff;stroke-width:1.27;stroke-linejoin:round;paint-order:markers stroke fill"
+       id="path1"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="78.176262"
+       sodipodi:cy="104.00235"
+       sodipodi:r1="53.505421"
+       sodipodi:r2="37.453796"
+       sodipodi:arg1="-0.26179939"
+       sodipodi:arg2="0.36651914"
+       inkscape:rounded="0.2"
+       inkscape:randomized="0"
+       d="m 129.85853,90.154128 c 1.65572,6.17923 -14.42358,21.298152 -16.71614,27.270462 -2.29255,5.97231 -0.45984,27.96701 -5.82499,31.45118 -5.36515,3.48417 -24.712876,-7.13615 -31.101318,-7.47095 -6.388443,-0.33481 -26.740307,8.20495 -31.711872,4.17905 -4.971566,-4.02589 -0.849818,-25.70853 -2.505537,-31.88776 -1.65572,-6.17923 -16.06658,-22.896078 -13.774025,-28.868388 2.292555,-5.97231 24.187663,-8.752599 29.552814,-12.236769 5.365152,-3.48417 16.810615,-22.355501 23.199057,-22.020697 6.388443,0.334805 15.798615,20.299133 20.770181,24.325027 4.97157,4.025895 26.45611,9.079615 28.11183,15.258845 z"
+       inkscape:transform-center-x="-0.8653271"
+       inkscape:transform-center-y="-4.2793359"
+       transform="translate(18.497062,20.591069)"
+       inkscape:export-filename="star.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>
