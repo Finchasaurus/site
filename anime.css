@@ -1,0 +1,102 @@
+body {
+	background: gray;
+	margin: 0;
+	overflow-x: hidden;
+	font-family: "Inter", sans-serif;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+
+	display: flex;
+	align-items: center;
+
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(12px);
+
+	text-transform: uppercase;
+
+	transition:
+		background 0.3s ease,
+		backdrop-filter 0.3s ease;
+
+	padding: 0.5em 4em;
+	box-sizing: border-box;
+
+	&.scrolled {
+		background: white;
+		backdrop-filter: none;
+	}
+
+	nav {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+
+		font-weight: 500;
+		font-size: 0.9em;
+
+		a {
+			position: relative;
+			padding-bottom: 0.25rem;
+
+			&::after {
+				content: "";
+
+				position: absolute;
+				left: 0;
+				bottom: 0;
+
+				width: 100%;
+				height: 2px;
+
+				background: currentColor;
+
+				transform: scaleX(0);
+				transform-origin: center;
+
+				transition: transform 0.2s ease;
+			}
+
+			&:hover::after {
+				transform: scaleX(1);
+			}
+		}
+	}
+}
+
+.background {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
+
+.logo {
+	height: 3em;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+html {
+	scroll-snap-type: y mandatory;
+	scroll-behavior: smooth;
+}
+
+.hero {
+	height: 100vh;
+	scroll-snap-align: start;
+}
+
+main {
+	scroll-snap-align: start;
+	scroll-margin-top: 4em;
+}
