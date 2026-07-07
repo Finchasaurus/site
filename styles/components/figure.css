@@ -5,6 +5,11 @@ details {
 	flex-direction: column;
 	border: var(--accent-border);
 
+	a {
+		text-decoration: none;
+		color: var(--accent-color-text);
+	}
+
 	& figcaption {
 		background: var(--accent-color);
 		color: var(--accent-color-text);

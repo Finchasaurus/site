@@ -32,7 +32,7 @@ main {
 }
 
 a {
-	color: var(--accent-color);
+	color: var(--accent-text);
 	text-decoration: underline;
 }
 
