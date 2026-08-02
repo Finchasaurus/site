@@ -19,10 +19,19 @@ jobs:
           ls -la
           find . -maxdepth 2 -type f | sort
        
-      - name: "Deploy 2 Nekoweb"
+      - name: Prepare deploy directory
+        run: |
+          mkdir deploy
+          rsync -a ./ ./deploy \
+            --exclude .git \
+            --exclude .github \
+            --exclude deploy \
+            --exclude deploy2nekoweb
+
+      - name: Deploy
         uses: indiefellas/deploy2nekoweb@main
-        with: 
+        with:
           nekoweb-api-key: ${{ secrets.NEKOWEB_API_KEY }}
           nekoweb-domain: "hoshiai.space"
           nekoweb-username: "meowbyte"
-          directory: "."
+          directory: "deploy"
