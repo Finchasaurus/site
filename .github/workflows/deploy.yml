@@ -12,6 +12,12 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
+      - name: Show files
+        run: |
+          pwd
+          ls -la
+          find . -maxdepth 2 -type f | sort
        
       - name: "Deploy 2 Nekoweb"
         uses: indiefellas/deploy2nekoweb@main
