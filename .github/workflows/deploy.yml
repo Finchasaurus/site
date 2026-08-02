@@ -7,60 +7,16 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Upload site to Nekoweb
-        env:
-          NEKOWEB_API_KEY: ${{ secrets.NEKOWEB_API_KEY }}
-          BEFORE_SHA: ${{ github.event.before }}
-          AFTER_SHA: ${{ github.sha }}
-          SITE_PATH: /${{ github.ref_name }}
-        run: |
-          set -e
-
-          if [ -z "$BEFORE_SHA" ]; then
-            BEFORE_SHA=$(git rev-list --max-parents=0 HEAD)
-          fi
-
-          git diff --name-status "$BEFORE_SHA" "$AFTER_SHA" \
-            | while read status file; do
-
-            [[ "$file" == .github/* ]] && continue
-            [[ "$file" == .git/* ]] && continue
-            [[ "$file" == *.zip ]] && continue
-
-            dirpath="$(dirname "$file")"
-              
-            if [ "$dirpath" = "." ]; then
-              uploadpath="$SITE_PATH"
-            else
-              uploadpath="$SITE_PATH/$dirpath"
-            fi
-
-            case "$status" in
-                A|M)
-                    [ -f "$file" ] || continue
-                    echo "Uploading $file to $uploadpath"
-
-                    curl --request POST \
-                    --url https://nekoweb.org/api/files/upload \
-                    --header "Authorization: $NEKOWEB_API_KEY" \
-                    --form pathname=$uploadpath \
-                    --form files=@"$file"
-                    ;;
-                D)
-                    echo "Deleting $file from $uploadpath"
-
-                    curl --request POST \
-                    --url https://nekoweb.org/api/files/delete \
-                    --header "Authorization: $NEKOWEB_API_KEY" \
-                    --data pathname="$uploadpath/$file"
-                    ;;
-                esac
-          done
+       
+      - name: "Deploy 2 Nekoweb"
+        uses: indiefellas/deploy2nekoweb@main
+        with: 
+          nekoweb-api-key: ${{ secrets.NEKOWEB_API_KEY }}
+          nekoweb-domain: "hoshiai.space"
+          nekoweb-username: "meowbyte"
+          directory: "."
