@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "**"
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -18,7 +19,7 @@ jobs:
           pwd
           ls -la
           find . -maxdepth 2 -type f | sort
-       
+
       - name: Prepare deploy directory
         run: |
           mkdir deploy
