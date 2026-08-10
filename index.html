@@ -1,44 +1,101 @@
-<!--# layout file="~/layouts/main.html" -->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>Hoshiai.Space</title>
+	</head>
+	<body>
+		<main class="accordion">
+			<input type="radio" name="pages" id="page-1" />
+			<input type="radio" name="pages" id="page-2" checked />
+			<input type="radio" name="pages" id="page-3" />
+			<input type="radio" name="pages" id="page-4" />
+			<input type="radio" name="pages" id="page-5" />
+			<input type="radio" name="pages" id="page-6" />
+			<input type="radio" name="pages" id="page-7" />
 
-<!--# block name="title" -->Hoshiai.Space<!--# endblock -->
+			<article class="panel panel-1">
+				<img src="/assets/2B.png" alt="Page one preview" />
+				<label class="panel-click" for="page-1"></label>
+				<div class="content">
+					<span class="number">01</span>
+					<h2>Home</h2>
+					<p>Welcome to my little site!</p>
+					<a href="/home"> Visit page → </a>
+				</div>
+			</article>
+			<article class="panel panel-2">
+				<img src="/assets/9S.png" alt="Page two preview" />
+				<label class="panel-click" for="page-2"></label>
+				<div class="content">
+					<span class="number">02</span>
+					<h2>About</h2>
+					<p>A little bit about me and this site</p>
+					<a href="/about"> Visit page → </a>
+				</div>
+			</article>
+			<article class="panel panel-3">
+				<img src="/assets/A2.png" alt="Page three preview" />
+				<label class="panel-click" for="page-3"></label>
+				<div class="content">
+					<span class="number">03</span>
+					<h2>Writing</h2>
+					<p>Some stuff I do and write about</p>
+					<a href="/writing"> Visit page → </a>
+				</div>
+			</article>
+			<article class="panel panel-4">
+				<img src="/assets/nier.png" alt="Page four preview" />
+				<label class="panel-click" for="page-4"></label>
+				<div class="content">
+					<span class="number">04</span>
+					<h2>Favorites</h2>
+					<p>Some of my favorite things.</p>
+					<a href="/favorites"> Visit page → </a>
+				</div>
+			</article>
+			<article class="panel panel-5">
+				<img src="/assets/emil.png" alt="Page five preview" />
+				<label class="panel-click" for="page-5"></label>
+				<div class="content">
+					<span class="number">05</span>
+					<h2>Cats</h2>
+					<p>Meow meow meow I love my cat</p>
+					<a href="/cats"> Visit page → </a>
+				</div>
+			</article>
+			<article class="panel panel-6">
+				<img src="/assets/kaine.png" alt="Page six preview" />
+				<label class="panel-click" for="page-6"></label>
+				<div class="content">
+					<span class="number">06</span>
+					<h2>Resources</h2>
+					<p>Cool ahh stuff</p>
+					<a href="/resources"> Visit page → </a>
+				</div>
+			</article>
+			<article class="panel panel-7">
+				<img src="/assets/emil2.png" alt="Page seven preview" />
+				<label class="panel-click" for="page-7"></label>
+				<div class="content">
+					<span class="number">07</span>
+					<h2>Contact</h2>
+					<p>I guess you can talk to me</p>
+					<a href="/contact"> Visit page → </a>
+				</div>
+			</article>
+		</main>
 
-<!--# block name="page" -->home<!--# endblock -->
-
-<!--# block name="header"-->Hoshiai.Space<!--# endblock-->
-
-<!--# block name="styles" -->
-<link rel="stylesheet" href="/styles/components/form.css" />
-<link rel="stylesheet" href="/styles/components/accordion.css" />
-<link rel="stylesheet" href="/styles/components/music-player.css" />
-<link rel="stylesheet" href="/styles/components/break.css" />
-<link rel="stylesheet" href="/styles/components/currently.css" />
-<link rel="stylesheet" href="/styles/components/dialog.css" />
-<!--# endblock -->
-
-<!--# block name="sidebar" -->
-<!--# include file="~/includes/home/sidebar.html" -->
-<!--# endblock -->
-
-<!--# block name="content" -->
-<section>
-	<h1>Welcome to Hoshiai.Space</h1>
-	<p>This place serves as my personal world where I can post about whatever comes to mind</p>
-	<p>I enjoy quite a wide amount of things so there's always going to be something interesting (i hope)</p>
-	<p>
-		Don't worry about not using JS either, this site was designed with the lack of JS in mind. In fact just turn it
-		off for a bit and check out what can be done without JS.
-	</p>
-	<p>
-		To get started I recommend
-		<a href="/about.html" tooltip="It's actually mostly filled out now">About</a>
-		or
-		<a href="/sitemap.html" tooltip="This one is though">Sitemap</a>
-	</p>
-	<sub>
-		A bunch of pages either don't have content or have minimal amounts and will continue to until I upgrade my
-		subscription to get more SSI featured for .md file support after my vacation
-	</sub>
-</section>
-<!--# include file="~/includes/home/currently.html"-->
-<!--# include file="~/includes/home/recent-project.html"-->
-<!--# endblock -->
+		<nav aria-label="Page navigation">
+			<label class="panel-1" for="page-1"> <img src="/assets/2B.png" alt="Page one" /> </label>
+			<label class="panel-2" for="page-2"> <img src="/assets/2B.png" alt="Page two" /> </label>
+			<label class="panel-3" for="page-3"> <img src="/assets/2B.png" alt="Page three" /> </label>
+			<label class="panel-4" for="page-4"> <img src="/assets/2B.png" alt="Page four" /> </label>
+			<label class="panel-5" for="page-5"> <img src="/assets/2B.png" alt="Page five" /> </label>
+			<label class="panel-6" for="page-6"> <img src="/assets/2B.png" alt="Page six" /> </label>
+			<label class="panel-7" for="page-7"> <img src="/assets/2B.png" alt="Page seven" /> </label>
+		</nav>
+	</body>
+</html>
