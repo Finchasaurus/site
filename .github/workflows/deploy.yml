@@ -3,7 +3,7 @@ name: Deploy to Nekoweb
 on:
     push:
         branches:
-            - "**"
+            - ${{ github.default_branch }}
     workflow_dispatch:
 
 jobs:
