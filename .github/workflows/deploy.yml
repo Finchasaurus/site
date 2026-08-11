@@ -9,40 +9,51 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout repo
+            - name: Checkout all branches
               uses: actions/checkout@v4
-
-            - name: Show files
-              run: |
-                  pwd
-                  ls -la
-                  find . -maxdepth 2 -type f | sort
+              with:
+                  fetch-depth: 0
 
             - name: Prepare deploy directory
+              shell: bash
               run: |
-                  mkdir deploy
+                  set -e
 
-                  if [ "${GITHUB_REF_NAME}" = "${{ github.event.repository.default_branch }}" ]; then
-                    # Default branch -> /
-                    rsync -a ./ ./deploy/ \
-                      --exclude .git \
-                      --exclude .github \
-                      --exclude deploy \
-                      --exclude deploy2nekoweb
-                  else
-                    # Other branches -> /old/<branch>
-                    mkdir -p "deploy/old/${GITHUB_REF_NAME}"
+                  mkdir -p deploy
 
-                    rsync -a ./ "deploy/old/${GITHUB_REF_NAME}/" \
-                      --exclude .git \
-                      --exclude .github \
-                      --exclude deploy \
-                      --exclude deploy2nekoweb
-                  fi
+                  DEFAULT_BRANCH="${{ github.event.repository.default_branch }}"
 
-            - name: Show deploy directory
+                  echo "Default branch: $DEFAULT_BRANCH"
+                  echo "Branches to deploy:"
+
+                  # Deploy the default branch to the site root
+                  git archive "origin/$DEFAULT_BRANCH" | tar -x -C deploy
+
+                  # Deploy every other branch under /old/{branch}/
+                  while read -r branch; do
+                    [ -z "$branch" ] && continue
+
+                    # Skip the default branch
+                    if [ "$branch" = "$DEFAULT_BRANCH" ]; then
+                      continue
+                    fi
+
+                    echo "Deploying branch: $branch"
+
+                    mkdir -p "deploy/old/$branch"
+
+                    git archive "origin/$branch" | tar -x -C "deploy/old/$branch"
+                  done < <(
+                    git for-each-ref \
+                      --format='%(refname:strip=3)' \
+                      refs/remotes/origin/ |
+                      grep -v '^HEAD$'
+                  )
+
+            - name: Show final deploy directory
               run: |
-                  find deploy -maxdepth 4 -type f | sort
+                  echo "Final deployment:"
+                  find deploy -type f | sort
 
             - name: Deploy
               uses: indiefellas/deploy2nekoweb@main
