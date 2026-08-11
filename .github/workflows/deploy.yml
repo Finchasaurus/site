@@ -6,7 +6,6 @@ on:
 
 jobs:
     deploy:
-        if: github.ref_name == github.event.repository.default_branch
         runs-on: ubuntu-latest
 
         steps:
@@ -22,11 +21,28 @@ jobs:
             - name: Prepare deploy directory
               run: |
                   mkdir deploy
-                  rsync -a ./ ./deploy \
-                    --exclude .git \
-                    --exclude .github \
-                    --exclude deploy \
-                    --exclude deploy2nekoweb
+
+                  if [ "${GITHUB_REF_NAME}" = "${{ github.event.repository.default_branch }}" ]; then
+                    # Default branch -> /
+                    rsync -a ./ ./deploy/ \
+                      --exclude .git \
+                      --exclude .github \
+                      --exclude deploy \
+                      --exclude deploy2nekoweb
+                  else
+                    # Other branches -> /old/<branch>
+                    mkdir -p "deploy/old/${GITHUB_REF_NAME}"
+
+                    rsync -a ./ "deploy/old/${GITHUB_REF_NAME}/" \
+                      --exclude .git \
+                      --exclude .github \
+                      --exclude deploy \
+                      --exclude deploy2nekoweb
+                  fi
+
+            - name: Show deploy directory
+              run: |
+                  find deploy -maxdepth 4 -type f | sort
 
             - name: Deploy
               uses: indiefellas/deploy2nekoweb@main
