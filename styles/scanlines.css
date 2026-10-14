@@ -1,0 +1,34 @@
+:root {
+	--scanline-color: rgba(0, 0, 0, 0.3);
+	--scanline-opacity: 0.75;
+	--scanline-speed: 128s;
+}
+
+[scanlines] {
+	position: relative;
+	isolation: isolate;
+}
+
+[scanlines]::after {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background: linear-gradient(to bottom, transparent 50%, var(--scanline-color) 51%);
+	background-size: 100% 4px;
+	animation: scanlines var(--scanline-speed) infinite;
+}
+
+[scanlines][paused]::after {
+	animation-play-state: paused;
+}
+
+@keyframes scanlines {
+	0% {
+		background-position: 0 100vh;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}

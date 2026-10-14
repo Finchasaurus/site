@@ -1,0 +1,71 @@
+:root {
+	--bg-gradient-start: rgba(73, 40, 143, 0.8);
+	--bg-gradient-end: rgb(246, 215, 174, 0.7);
+
+	--win-gradient-start: rgb(242, 189, 133);
+	--win-gradient-end: rgb(243, 45, 88);
+	--win-shadow: rgba(57, 28, 19, 0.8);
+	--win-shadow-offset-v: 15px;
+	--win-shadow-offset: calc(var(--win-shadow-offset-v) * -1) var(--win-shadow-offset-v);
+
+	--page-width: 666px;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	min-height: 100%;
+	background: black;
+}
+
+body {
+	background: linear-gradient(to bottom, var(--bg-gradient-start) 60%, var(--bg-gradient-end) 100%);
+	overflow-x: hidden;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+main {
+	width: 100%;
+	max-width: var(--page-width);
+	min-height: 100dvh;
+
+	padding: 10px;
+}
+
+.bar {
+	flex: 1 1 0;
+	min-width: 0;
+	min-height: 100lvh;
+	background: black;
+
+	transform: scaleX(1);
+	transition: transform 0.8s ease;
+	will-change: transform;
+
+	@starting-style {
+		transform: scaleX(0);
+	}
+
+	&.left {
+		transform-origin: right center;
+	}
+
+	&.right {
+		transform-origin: left center;
+	}
+}
+
+section {
+	margin-left: var(--win-shadow-offset-v);
+	width: calc(100% - var(--win-shadow-offset-v) * 2);
+	background: linear-gradient(to bottom, var(--win-gradient-start) 0%, var(--win-gradient-end) 100%);
+	filter: drop-shadow(var(--win-shadow-offset) var(--win-shadow));
+}
+
+h1 {
+	margin: 0;
+}
