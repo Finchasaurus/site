@@ -1,3 +1,4 @@
+from http.cookies import SimpleCookie
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
@@ -9,6 +10,7 @@ import sys
 import threading
 import time
 from urllib.error import HTTPError, URLError
+from urllib.parse import parse_qs, urlsplit
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).parent.resolve()
@@ -41,6 +43,11 @@ stats_pattern = re.compile(
     re.IGNORECASE
 )
 
+echo_pattern = re.compile(
+    r'<!--\s*#\s*echo\s+var\s*=\s*"([^"]+)"\s*-->',
+    re.IGNORECASE
+)
+
 RELOAD_SCRIPT = """
 <script>
 const es = new EventSource("/__events__");
@@ -57,6 +64,39 @@ _last_mtime = 0
 
 stats_lock = threading.Lock()
 stats_cache = {}
+
+def get_echo_var(name: str, filepath: Path, handler) -> str:
+    """Resolving SSi echo variables according to the spec"""
+    name = name.strip()
+
+    # filename attribute
+    if name == "filename":
+        return filepath.stem
+
+    # query.key attribute
+    if name.startswith("query."):
+        key = name[len("query."):]
+
+        query = parse_qs(urlsplit(handler.path).query, keep_blank_values=True)
+
+        values = query.get(key)
+        return values[0] if values else ""
+
+    # cookie.name attribute
+    if name.startswith("cookie."):
+        key = name[len("cookie."):]
+
+        cookies = SimpleCookie()
+
+        try:
+            cookies.load(handler.headers.get("Cookie", ""))
+        except Exception:
+            return ""
+
+        if key in cookies:
+            return cookies[key].value
+
+    return ""
 
 def fetch_site_stats():
     """Fetch Nekoweb stats, caching them to avoid a lot of requests"""
@@ -180,7 +220,7 @@ def resolve_path(current_file: Path, relative: str) -> Path:
 
     return resolved
 
-def process_file(filepath: Path, visited=None) -> str:
+def process_file(filepath: Path, visited=None, handler=None) -> str:
     filepath = filepath.resolve()
 
     if visited is None:
@@ -227,7 +267,8 @@ def process_file(filepath: Path, visited=None) -> str:
         # load layout RAW
         layout_content = process_file(
             layout_path,
-            visited.copy()
+            visited.copy(),
+            handler
         )
 
         # replace layout blocks
@@ -253,7 +294,8 @@ def process_file(filepath: Path, visited=None) -> str:
 
         return process_file(
             include_path,
-            visited.copy()
+            visited.copy(),
+            handler
         )
 
     content = include_pattern.sub(
@@ -265,8 +307,22 @@ def process_file(filepath: Path, visited=None) -> str:
         stat_name = match.group(1)
         return get_site_stat(stat_name)
 
+   
+
     content = stats_pattern.sub(
         replace_stats,
+        content
+    )
+
+    def replace_echo(match):
+        return get_echo_var(
+            match.group(1),
+            filepath,
+            handler
+        )
+
+    content = echo_pattern.sub(
+        replace_echo,
         content
     )
 
@@ -322,7 +378,8 @@ class SSIHandler(SimpleHTTPRequestHandler):
         if full_path.suffix == ".html":
             try:
                 content = process_file(
-                    full_path
+                    full_path,
+                    handler=self
                 )
 
                 # inject variable for code to know if in dev server
