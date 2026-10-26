@@ -13,7 +13,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, urlsplit
 from urllib.request import Request, urlopen
 
-ROOT = Path(__file__).parent.resolve()
+ROOT = Path.cwd();
 
 # Environment variable for domain, defaulting to "hoshiai.space" (my site lmao)
 DOMAIN = "hoshiai.space"
@@ -435,6 +435,22 @@ class SSIHandler(SimpleHTTPRequestHandler):
         super().do_GET()
 
 def main():
+    global ROOT
+
+    # default page to open
+    open_page = "/"
+    cwd = os.getcwd()
+
+    if len(sys.argv) > 1:
+        open_page = sys.argv[1].lstrip("/")
+
+    if len(sys.argv) > 2:
+        cwd = Path(sys.argv[2]).resolve()
+
+    print(f"Serving files from: {cwd}")
+
+    ROOT = cwd
+
     if DOMAIN:
         print(f"Using domain: {DOMAIN}")
         print(f"Cache duration: {CACHE_TTL // 60} minutes")
@@ -443,12 +459,6 @@ def main():
         ("localhost", 8000),
         SSIHandler
     )
-
-    # default page to open
-    open_page = "/"
-
-    if len(sys.argv) > 1:
-        open_page = sys.argv[1].lstrip("/")
 
     url = f"http://localhost:8000/{open_page}"
 
