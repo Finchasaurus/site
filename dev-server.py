@@ -3,6 +3,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
 from pathlib import Path
+import posixpath
 import re
 import random
 from shlex import quote
@@ -10,10 +11,57 @@ import sys
 import threading
 import time
 from urllib.error import HTTPError, URLError
-from urllib.parse import parse_qs, urlsplit
+from urllib.parse import parse_qs, unquote, urlsplit
 from urllib.request import Request, urlopen
 
-ROOT = Path.cwd();
+try:
+    from site_map import MAP_FILE, SiteMap
+except ModuleNotFoundError as e:
+    if e.name != "site_map":
+        raise
+
+    MAP_FILE = "site-map.toml"
+
+    class SiteMap:
+        """Fallback: serve a single folder as site root"""
+
+        config_file = None
+
+        def __init__(self, base: Path):
+            self.base = base.resolve()
+
+        @classmethod
+        def load(cls, base: Path):
+            return cls(base)
+
+        def resolve(self, site_path: str):
+            rel = posixpath.normpath("/" + site_path.lstrip("/")).lstrip("/")
+
+            try:
+                path = (self.base / rel).resolve()
+            except (OSError, ValueError):
+                return None
+
+            if path != self.base and self.base not in path.parents:
+                return None
+
+            return path if path.exists() else None
+
+        def to_site(self, path: Path):
+            try:
+                return "/" + path.resolve().relative_to(self.base).as_posix()
+            except ValueError:
+                return None
+
+        def files(self):
+            for p in self.base.rglob("*"):
+                if p.is_file():
+                    yield p, None
+
+        def missing(self):
+            return []
+
+SITE = None
 
 # Environment variable for domain, defaulting to "hoshiai.space" (my site lmao)
 DOMAIN = "hoshiai.space"
@@ -173,12 +221,11 @@ def get_site_stat(name: str) -> str:
 
 def scan_mtime():
     latest = 0
-    for p in ROOT.rglob("*"):
-        if p.is_file():
-            try:
-                latest = max(latest, p.stat().st_mtime)
-            except OSError:
-                pass
+    for p, _ in SITE.files():
+        try:
+            latest = max(latest, p.stat().st_mtime)
+        except OSError:
+            pass
     return latest
 
 def watcher():
@@ -216,16 +263,19 @@ def resolve_path(current_file: Path, relative: str) -> Path:
     """
 
     if relative.startswith("~/"):
-        path = ROOT / relative[2:]
+        site_path = "/" + relative[2:]
     else:
-        path = current_file.parent / relative
+        current_site_path = SITE.to_site(current_file)
 
-    resolved = path.resolve()
+        if (current_site_path is None):
+            raise ValueError(f"Current file {current_file} is not in the site map")
 
-    try:
-        resolved.relative_to(ROOT)
-    except ValueError:
-        raise ValueError(f"Access outside ROOT denied: {relative}")
+        site_path = posixpath.join(posixpath.dirname(current_site_path), relative)
+
+    resolved = SITE.resolve(site_path)
+
+    if resolved is None:
+        raise ValueError(f"Path {relative} resolved to {site_path}, which is not in the site map")
 
     return resolved
 
@@ -250,7 +300,6 @@ def process_file(filepath: Path, visited=None, handler=None) -> str:
         encoding="utf-8"
     )
 
-    
     # handle layout
     layout_match = layout_pattern.search(content)
 
@@ -337,17 +386,19 @@ def process_file(filepath: Path, visited=None, handler=None) -> str:
 
     return content
 
+def find_file(site_path: str) -> Path | None:
+    found = SITE.resolve(site_path)
+
+    if found is not None and found.is_dir():
+        found = SITE.resolve(posixpath.join(site_path, "index.html"))
+
+    return found if found is not None and found.is_file() else None
+
 class SSIHandler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
-        """
-        Serve static files from ROOT instead of cwd.
-        """
-        path = path.split("?", 1)[0]
-        path = path.lstrip("/")
+        found = find_file(unquote(urlsplit(path).path))
 
-        return str(
-            (ROOT / path).resolve()
-        )
+        return str(found if found else SITE.base / ".not-found")
 
     def do_GET(self):
         if self.path == "/__events__":
@@ -368,54 +419,30 @@ class SSIHandler(SimpleHTTPRequestHandler):
 
             return
 
-        path = self.path.split("?", 1)[0]
+        full_path = find_file(unquote(urlsplit(self.path).path))
 
-        if path == "/":
-            path = "/index.html"
-
-        full_path = (
-            ROOT / path.lstrip("/")
-        ).resolve()
-
-        try:
-            full_path.relative_to(ROOT)
-        except ValueError:
-            self.send_error(403)
+        if full_path is None:
+            self.send_error(404, "File not found")
             return
 
-        # SSI for HTML files only
         if full_path.suffix == ".html":
             try:
-                content = process_file(
-                    full_path,
-                    handler=self
-                )
+                content = process_file(full_path, handler=self)
 
                 # inject variable for code to know if in dev server
-                content = content.replace(
-                    "</head>",
-                    DEVENV_SCRIPT + "\n</head>"
-                )
+                content = content.replace("</head>", DEVENV_SCRIPT + "\n</head>")
 
                 # inject reload script before </body> if present, otherwise append to end
                 if "</body>" in content:
-                    content = content.replace(
-                        "</body>",
-                        RELOAD_SCRIPT + "\n</body>"
-                    )
+                    content = content.replace("</body>", RELOAD_SCRIPT + "\n</body>")
                 else:
                     content += RELOAD_SCRIPT
 
                 self.send_response(200)
-                self.send_header(
-                    "Content-Type",
-                    "text/html; charset=utf-8"
-                )
+                self.send_header("Content-Type", "text/html; charset=utf-8")
                 self.end_headers()
 
-                self.wfile.write(
-                    content.encode("utf-8")
-                )
+                self.wfile.write(content.encode("utf-8"))
 
             except FileNotFoundError:
                 self.send_error(
@@ -434,22 +461,45 @@ class SSIHandler(SimpleHTTPRequestHandler):
         # normal static file serving
         super().do_GET()
 
+def page_url(arg: str) -> str:
+    arg = arg.replace("\\", "/")
+    local = Path(arg)
+
+    if local.is_file():
+        site_path = SITE.to_site(local)
+
+        if site_path is None:
+            print(f"{arg} is not in the site map opening / instead")
+            return "/"
+
+        return site_path
+
+    return "/" + arg.lstrip("/")
+
 def main():
-    global ROOT
+    global SITE
 
     # default page to open
     open_page = "/"
-    cwd = os.getcwd()
-
-    if len(sys.argv) > 1:
-        open_page = sys.argv[1].lstrip("/")
+    project_dir = Path.cwd()
 
     if len(sys.argv) > 2:
-        cwd = Path(sys.argv[2]).resolve()
+        project_dir = Path(sys.argv[2]).resolve()
 
-    print(f"Serving files from: {cwd}")
+    SITE = SiteMap.load(project_dir)
 
-    ROOT = cwd
+    if len(sys.argv) > 1:
+        open_page = page_url(sys.argv[1])
+
+    if (SITE.config_file):
+        print(f"Using site map: {SITE.config_file}")
+        print(SITE.describe())
+
+        for path in SITE.missing():
+            print(f"Warning: source path {path} does not exist")
+
+    else:
+        print(f"Warning: no {MAP_FILE} found in {project_dir}, using all files in the folder")
 
     if DOMAIN:
         print(f"Using domain: {DOMAIN}")
@@ -476,7 +526,6 @@ def main():
     finally:
         server.server_close()
         print("Server stopped")
-
 
 if __name__ == "__main__":
     main()

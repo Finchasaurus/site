@@ -16,20 +16,14 @@ jobs:
             - name: Checkout repo
               uses: actions/checkout@v4
 
+            - name: Build site (src/ layout -> Nekoweb layout)
+              run: python3 site_map.py build deploy
+
             - name: Show files
               run: |
                   pwd
-                  ls -la
-                  find . -maxdepth 2 -type f | sort
-
-            - name: Prepare deploy directory
-              run: |
-                  mkdir deploy
-                  rsync -a ./ ./deploy \
-                    --exclude .git \
-                    --exclude .github \
-                    --exclude deploy \
-                    --exclude deploy2nekoweb
+                  ls -la deploy
+                  find deploy -type f | sort
 
             - name: Deploy
               uses: indiefellas/deploy2nekoweb@main

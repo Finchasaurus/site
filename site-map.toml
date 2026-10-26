@@ -1,0 +1,24 @@
+# Where things live in the repo  ->  where they end up on the site.
+#
+#     "path in repo" = "path on the site"
+#
+# Used by both the dev server (dev-server.py) and the deploy build
+# (python site-map.py build), so they can never disagree.
+#
+# - Paths on the left are relative to this file.
+# - A folder publishes everything inside it. A file publishes just itself.
+# - "/" means the site root, which is what `~/` means in the SSI includes.
+# - Restart the dev server after editing this file.
+
+[map]
+# src/pages/about.html -> /about.html
+"src/pages" = "/"
+"src/layouts" = "/layouts"
+"src/includes" = "/includes"
+"src/styles" = "/styles"
+"src/scripts" = "/scripts"
+"src/elements.css" = "/elements.css"
+"assets" = "/assets"
+"feed" = "/feed"
+
+# Anything not listed here is NOT deployed (dev-server.py, shell.nix, .vscode, ...).
