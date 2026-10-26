@@ -325,6 +325,13 @@ class SSIHandler(SimpleHTTPRequestHandler):
                     full_path
                 )
 
+                # inject variable for code to know if in dev server
+                content = content.replace(
+                    "</head>",
+                    '<script>window.__DEV_SERVER__ = true;</script>\n</head>'
+                )
+
+                # inject reload script before </body> if present, otherwise append to end
                 if "</body>" in content:
                     content = content.replace(
                         "</body>",

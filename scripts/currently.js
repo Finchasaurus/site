@@ -1,16 +1,46 @@
 function renderElement(container, data) {
-	const img = container.querySelector("img");
-	img.classList.add("placeholder");
-	const link = container.querySelector("a");
-	const caption = link.querySelector("figcaption");
+	if (!container) {
+		console.error("Container not found");
+		return;
+	}
 
+	const img = container.querySelector("img");
+	const link = container.querySelector("a:not(figcaption a)");
+	const caption = link?.querySelector("figcaption");
+
+	if (!img || !link || !caption) {
+		console.error("Missing required elements in container (img, link, or caption)", {
+			container,
+			img,
+			link,
+			caption,
+		});
+		return;
+	}
+
+	img.classList.add("placeholder");
 	img.src = data.image;
 	img.alt = data.title;
 
 	link.href = data.url;
 	link.target = "_blank";
+	link.rel = "noopener noreferrer";
 
 	caption.textContent = data.title;
+}
+
+function cache(key, data) {
+	if (window.__DEV_SERVER__) {
+		return;
+	}
+
+	localStorage.setItem(
+		key,
+		JSON.stringify({
+			timestamp: Date.now(),
+			data,
+		}),
+	);
 }
 
 function renderLastFM(data) {
@@ -53,13 +83,7 @@ async function loadLastFM() {
 		const data = await result.json();
 
 		// Only cache successful data
-		localStorage.setItem(
-			key,
-			JSON.stringify({
-				timestamp: Date.now(),
-				data,
-			}),
-		);
+		cache(key, data);
 
 		renderLastFM(data);
 	} catch (error) {
@@ -142,14 +166,7 @@ async function loadAniList() {
 
 		const data = await result.json();
 
-		// Only cache successful data
-		localStorage.setItem(
-			key,
-			JSON.stringify({
-				timestamp: Date.now(),
-				data,
-			}),
-		);
+		cache(key, data);
 
 		renderAniList(data);
 	} catch (error) {
