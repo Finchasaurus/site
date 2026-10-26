@@ -58,6 +58,15 @@ es.onmessage = () => {
 </script>
 """
 
+DEVENV_SCRIPT = """
+<meta name="environment" content="development">
+<script>
+window.__DEV_SERVER__ = true;
+document.documentElement.classList.add("dev-server");
+document.documentElement.setAttribute("dev-server", "true");
+</script>
+"""
+
 clients = []
 clients_lock = threading.Lock()
 _last_mtime = 0
@@ -385,7 +394,7 @@ class SSIHandler(SimpleHTTPRequestHandler):
                 # inject variable for code to know if in dev server
                 content = content.replace(
                     "</head>",
-                    '<script>window.__DEV_SERVER__ = true;</script>\n</head>'
+                    DEVENV_SCRIPT + "\n</head>"
                 )
 
                 # inject reload script before </body> if present, otherwise append to end
