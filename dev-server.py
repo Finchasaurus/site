@@ -1,12 +1,25 @@
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+import json
+import os
 from pathlib import Path
 import re
 import random
+from shlex import quote
 import sys
 import threading
 import time
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).parent.resolve()
+
+# Environment variable for domain, defaulting to "hoshiai.space" (my site lmao)
+DOMAIN = "hoshiai.space"
+DOMAIN = os.getenv("NEKOWEB_DOMAIN", DOMAIN).strip()
+
+API_BASE_URL = "https://nekoweb.org/api"
+CACHE_TTL = 30 * 60  # 30 minutes
+API_TIMEOUT = 5
 
 layout_pattern = re.compile(
     r'<!--\s*#\s*layout\s+file\s*=\s*"([^"]+)"\s*-->',
@@ -28,8 +41,6 @@ stats_pattern = re.compile(
     re.IGNORECASE
 )
 
-reload_version = 0
-
 RELOAD_SCRIPT = """
 <script>
 const es = new EventSource("/__events__");
@@ -41,7 +52,75 @@ es.onmessage = () => {
 """
 
 clients = []
+clients_lock = threading.Lock()
 _last_mtime = 0
+
+stats_lock = threading.Lock()
+stats_cache = {}
+
+def fetch_site_stats():
+    """Fetch Nekoweb stats, caching them to avoid a lot of requests"""
+    if not DOMAIN:
+        return None
+
+    now = time.time()
+
+    with stats_lock:
+        cached = stats_cache.get(DOMAIN)
+
+        if cached and now - cached["timestamp"] < CACHE_TTL:
+            return cached["data"]
+
+        api_url = f"{API_BASE_URL}/site/info/{DOMAIN}"
+
+        try:
+            request = Request(api_url, headers={"Accept": "application/json", "User-Agent": "NekowebDevServer/1.0"})
+
+            with urlopen(request, timeout=API_TIMEOUT) as response:
+                result = json.loads(response.read().decode("utf-8"))
+
+            if not isinstance(result, dict):
+                raise ValueError("Invalid API response")
+
+            stats = {
+                name: result[name]
+                for name in ("views", "updates", "followers")
+                    if isinstance(result.get(name), (int, float)) and not isinstance(result.get(name), bool)
+            }
+
+            if not stats:
+                raise ValueError("No valid stats in API response")
+
+            stats_cache[DOMAIN] = {
+                "timestamp": now,
+                "data": stats
+            }
+
+            print(f"Updated stats for {DOMAIN}")
+
+            return stats
+
+        except (HTTPError, URLError, TimeoutError, OSError, json.JSONDecodeError) as e:
+            print(f"Nekoweb API unavailable: {e}")
+
+            if cached:
+                print(f"Using cached stats for {DOMAIN}")
+                return cached["data"]
+
+            return None
+
+def get_site_stat(name: str) -> str:
+    """Return real stats if available, otherwise a random number"""
+    name = name.lower()
+
+    if DOMAIN:
+        stats = fetch_site_stats()
+
+        if stats and name in stats:
+            return str(stats[name])
+
+    # Random stats when no domain is set or API is unavailable
+    return str(random.randint(0, 1_000))
 
 def scan_mtime():
     latest = 0
@@ -66,31 +145,18 @@ def watcher():
         if current > _last_mtime:
             _last_mtime = current
 
-            dead = []
+            with clients_lock:
+                dead = []
 
-            for wfile in clients:
-                try:
-                    wfile.write(b"data: reload\n\n")
-                    wfile.flush()
-                except Exception:
-                    dead.append(wfile)
+                for wfile in clients:
+                    try:
+                        wfile.write(b"data: reload\n\n")
+                        wfile.flush()
+                    except Exception:
+                        dead.append(wfile)
 
-            for d in dead:
-                clients.remove(d)
-
-def get_site_stat(name: str) -> str:
-    """
-    Fake site stats for testing.
-    Replace with real DB/API logic later.
-    """
-
-    fake_stats = {
-        "views": random.randint(0, 1_000),
-        "updates": random.randint(10, 500),
-        "followers": random.randint(0, 1_000),
-    }
-
-    return str(fake_stats[name.lower()])
+                for d in dead:
+                    clients.remove(d)
 
 def resolve_path(current_file: Path, relative: str) -> Path:
     """
@@ -209,8 +275,7 @@ def process_file(filepath: Path, visited=None) -> str:
 class SSIHandler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
         """
-        Serve static files from ROOT
-        instead of cwd.
+        Serve static files from ROOT instead of cwd.
         """
         path = path.split("?", 1)[0]
         path = path.lstrip("/")
@@ -297,6 +362,10 @@ class SSIHandler(SimpleHTTPRequestHandler):
         super().do_GET()
 
 def main():
+    if DOMAIN:
+        print(f"Using domain: {DOMAIN}")
+        print(f"Cache duration: {CACHE_TTL // 60} minutes")
+
     server = ThreadingHTTPServer(
         ("localhost", 8000),
         SSIHandler
