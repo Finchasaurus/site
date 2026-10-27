@@ -92,7 +92,7 @@ stats_pattern = re.compile(
 )
 
 echo_pattern = re.compile(
-    r'<!--\s*#\s*echo\s+var\s*=\s*"([^"]+)"\s*-->',
+    r'<!--\s*#\s*echo\s+var\s*=\s*"([^"]+)"\s*(?:default\s*="([^"]+)")?\s*-->',
     re.IGNORECASE
 )
 
@@ -122,38 +122,32 @@ _last_mtime = 0
 stats_lock = threading.Lock()
 stats_cache = {}
 
-def get_echo_var(name: str, filepath: Path, handler) -> str:
-    """Resolving SSi echo variables according to the spec"""
+def get_echo_var(name: str, filepath: Path, handler, default=None) -> str:
+    """Resolve SSI echo variables according to the specification."""
     name = name.strip()
+    fallback = default if default is not None else ""
 
-    # filename attribute
     if name == "filename":
         return filepath.stem
 
-    # query.key attribute
     if name.startswith("query."):
-        key = name[len("query."):]
-
+        key = name.removeprefix("query.")
         query = parse_qs(urlsplit(handler.path).query, keep_blank_values=True)
+        return query.get(key, [fallback])[0]
 
-        values = query.get(key)
-        return values[0] if values else ""
-
-    # cookie.name attribute
     if name.startswith("cookie."):
-        key = name[len("cookie."):]
-
+        key = name.removeprefix("cookie.")
         cookies = SimpleCookie()
 
         try:
             cookies.load(handler.headers.get("Cookie", ""))
         except Exception:
-            return ""
+            return fallback
 
-        if key in cookies:
-            return cookies[key].value
+        cookie = cookies.get(key)
+        return cookie.value if cookie else fallback
 
-    return ""
+    return fallback
 
 def fetch_site_stats():
     """Fetch Nekoweb stats, caching them to avoid a lot of requests"""
@@ -376,7 +370,8 @@ def process_file(filepath: Path, visited=None, handler=None) -> str:
         return get_echo_var(
             match.group(1),
             filepath,
-            handler
+            handler,
+            match.group(2) if match.lastindex >= 2 else None
         )
 
     content = echo_pattern.sub(
