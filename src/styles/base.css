@@ -3,13 +3,16 @@
 }
 
 body {
-	background: var(--background-color);
 	margin: 0;
 	overflow-x: hidden;
 
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+
+	background-color: var(--background-color);
+	background-image: radial-gradient(rgba(0, 0, 0, 0.15) 2px, transparent 2px);
+	background-size: 24px 24px;
 }
 
 page {

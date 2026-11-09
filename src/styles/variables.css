@@ -27,9 +27,9 @@
 	--accent-filter-white: brightness(0) invert(1);
 	--accent-filter: var(--accent-filter-default);
 
-	--accent-color-text: white;
+	--accent-color-text: whitesmoke;
 	--background-color: lightgray;
-	--container-color: white;
+	--container-color: whitesmoke;
 
 	/* Borders */
 	--border-width: 1px;
