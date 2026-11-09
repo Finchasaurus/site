@@ -6,7 +6,7 @@
 
 .profile-box {
 	float: left;
-	width: var(--sidebar-width);
+	width: calc(var(--sidebar-width) - var(--spacing-sm));
 	margin-right: var(--spacing-sm);
 }
 
